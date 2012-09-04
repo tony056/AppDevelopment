@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">menu2</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="buttonname1">Player Name</string>
+    <string name="buttonname2">沿用</string>
+    <string name="buttonname3">詳細資料</string>
+
+</resources>
