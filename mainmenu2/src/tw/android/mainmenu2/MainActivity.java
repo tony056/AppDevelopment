@@ -31,4 +31,9 @@ public class MainActivity extends Activity {
     	it.setClass(MainActivity.this,Info.class);
     	startActivity(it);
     }
+    public void changename(View view){ 
+    	Intent it = new Intent();
+    	it.setClass(MainActivity.this,Record.class);
+    	startActivity(it);
+    }
 }
