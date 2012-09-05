@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+<TableLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TableRow
+    	    	android:layout_width="match_parent"
+    	    	android:layout_height="wrap_content" >
+
+    	   		<TextView android:id="@+id/foullight1"
+    	       	  android:layout_marginLeft="50dp"
+    	       	  android:layout_width="wrap_content"
+    	       	  android:layout_height="wrap_content"
+            	  android:text="1"/>
+   			</TableRow>
+   			<TableRow
+   	    		android:layout_width="match_parent"   
+   	    		android:layout_height="wrap_content" >
+
+	    	   	<TextView android:id="@+id/foullight2"
+    	       	  android:layout_marginLeft="50dp"
+    	       	  android:layout_width="wrap_content"
+    	       	  android:layout_height="wrap_content"
+            	  android:text="2"/>
+   			</TableRow>
+   			<TableRow
+   	    		android:layout_width="match_parent"
+   	    		android:layout_height="wrap_content" >
+    	    	<TextView android:id="@+id/foullight3"
+    	       	  android:layout_marginLeft="50dp"
+    	       	  android:layout_width="wrap_content"
+    	       	  android:layout_height="wrap_content"
+    	       	  android:text="3"/>
+    		</TableRow>
+    		<TableRow
+   	    		android:layout_width="match_parent"
+   	    		android:layout_height="wrap_content" >
+      	   		<TextView android:id="@+id/foullight4"
+    	       	  android:layout_marginLeft="50dp"
+    	       	  android:layout_width="wrap_content"
+    	       	  android:layout_height="wrap_content"
+            	  android:text="4"/>
+   			</TableRow>
+   			<TableRow
+   	   			  android:layout_width="match_parent"
+   	    		  android:layout_height="wrap_content" >
+    			<TextView
+    		      android:id="@+id/foullight5"
+    		   	  android:layout_width="wrap_content"
+    		      android:layout_height="wrap_content"
+    		   	  android:layout_marginLeft="50dp"
+    		   	  android:text="5" />
+   			</TableRow>
+		</TableLayout>
+
+		<TableLayout
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" >
+
+		    <TableRow android:layout_width="match_parent"
+		    	  android:layout_height="match_parent">
+
+		    	<TextView
+		        android:id="@+id/ourteamname"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center"
+		        android:text="A" />
+
+		     	<TextView
+		         android:id="@+id/ourteamname"
+		         android:layout_width="wrap_content"
+		         android:layout_height="wrap_content"
+		         android:layout_gravity="center"
+		         android:text="B" />
+
+			</TableRow>		
+		    	  
+			<TableRow
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" >
+
+				<TextView
+		    	android:id="@+id/ourscore"
+		    	android:layout_width="90dp"
+		    	android:layout_height="80dp"
+		    	android:layout_gravity="center"
+		    	android:text="24"
+		    	android:textSize="48sp" />
+		
+				<TextView
+		    	android:id="@+id/ourscore"
+		    	android:layout_width="90dp"
+		   		android:layout_height="80dp"
+		    	android:layout_gravity="center"
+		    	android:text="25"
+		    	android:textSize="48sp" />
+			</TableRow>
+		</TableLayout>
+
+		<TableLayout
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" >
+
+		    <TableRow
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content" >
+
+    	    <TextView android:id="@+id/foullight1"
+    	        	  
+    	        	  android:layout_width="wrap_content"
+    	        	  android:layout_height="wrap_content"
+    	        	  android:text="1"/>
+    	</TableRow>
+    	<TableRow
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content" >
+
+    	    <TextView android:id="@+id/foullight2"
+    	        	  
+    	        	  android:layout_width="wrap_content"
+    	        	  android:layout_height="wrap_content"
+    	        	  android:text="2"/>
+    	</TableRow>
+    	<TableRow
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content" >
+
+    	    <TextView android:id="@+id/foullight3"
+    	        	  
+    	        	  android:layout_width="wrap_content"
+    	        	  android:layout_height="wrap_content"
+    	        	  android:text="3"/>
+    	</TableRow>
+    	<TableRow
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content" >
+
+    	    <TextView android:id="@+id/foullight4"
+    	        	 
+    	        	  android:layout_width="wrap_content"
+    	        	  android:layout_height="wrap_content"
+    	        	  android:text="4"/>
+    	</TableRow>
+    	<TableRow
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content" >
+
+    		<TextView
+    		    android:id="@+id/foullight5"
+    		    android:layout_width="wrap_content"
+    		    android:layout_height="wrap_content"
+    		   	android:text="5" />
+		</TableRow>
+		</TableLayout>
+		<TableLayout 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content">
+		    <TableRow>
+		        <Button android:id="@+id/addscore"
+		            	android:text="+1"/>
+		    </TableRow>
+		    <TableRow >
+		        <Button android:id="@+id/minusscore"
+		            	android:text="-1"/>
+		    </TableRow>
+		</TableLayout>
+    </TableRow>
+</TableLayout>
+
+<TableLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+	<TableRow 
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content">
+    	<Button android:id="@+id/mainplayer1"
+        		android:text="player1"/>
+    	<Button android:id="@+id/mainplayer2"
+        		android:text="player2"/>
+    	<Button android:id="@+id/mainplayer3"
+        		android:text="player3"/>
+    	<Button android:id="@+id/mainplayer4"
+        		android:text="player4"/>
+    	<Button android:id="@+id/mainplayer5"
+        		android:text="player5"/>
+    </TableRow>
+    <TableRow 
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content" >
+        <TextView android:id="@+id/mainnum1"
+            	android:text="1"
+            	android:layout_gravity="center"/>
+        <TextView android:id="@+id/mainnum2"
+            	android:text="2"
+            	android:layout_gravity="center"/>
+        <TextView android:id="@+id/mainnum3"
+            	android:text="3"
+            	android:layout_gravity="center"/>
+        <TextView android:id="@+id/mainnum4"
+            	android:text="4"
+            	android:layout_gravity="center"/>
+        <TextView android:id="@+id/mainnum5"
+            	android:text="5"
+            	android:layout_gravity="center"/>
+    </TableRow>
+</TableLayout>
+
+<ScrollView android:layout_width="wrap_content"
+    		android:layout_height="wrap_content">
+<TableLayout 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TableRow 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button android:id="@+id/benchplayer1"
+            	android:text="Bplayer1"/>
+        <Button android:id="@+id/benchplayer2"
+            	android:text="Bplayer2"/>
+    </TableRow>
+    <TableRow 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button android:id="@+id/benchplayer3"
+            	android:text="Bplayer3"/>
+        <Button android:id="@+id/benchplayer4"
+            	android:text="Bplayer4"/>
+    </TableRow>
+    <TableRow 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button android:id="@+id/benchplayer5"
+            	android:text="Bplayer5"/>
+        <Button android:id="@+id/benchplayer6"
+            	android:text="Bplayer6"/>
+    </TableRow>
+    <TableRow 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button android:id="@+id/benchplayer7"
+            	android:text="Bplayer7"/>
+        <Button android:id="@+id/benchplayer8"
+            	android:text="Bplayer8"/>
+    </TableRow>
+    <TableRow 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button android:id="@+id/benchplayer9"
+            	android:text="Bplayer9"/>
+        <Button android:id="@+id/benchplayer10"
+            	android:text="Bplayer10"/>
+    </TableRow>
+</TableLayout>
+</ScrollView>
+</LinearLayout>
