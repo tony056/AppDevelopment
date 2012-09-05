@@ -21,11 +21,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name="Info"></activity>
         <activity android:name="Addplayer"></activity>
         <activity android:name="Main"
             android:screenOrientation="landscape"
             ></activity>
+=======
+        <activity android:name=".Addplayer"
+            android:label="player">
+        </activity>
+        <activity android:name=".Info"
+            	android:label="information">
+        </activity>
+>>>>>>> mainpage  是第三頁
     </application>
 
 </manifest>

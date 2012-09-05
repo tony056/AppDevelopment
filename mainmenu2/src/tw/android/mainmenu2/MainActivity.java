@@ -1,5 +1,6 @@
 package tw.android.mainmenu2;
 
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -14,27 +15,20 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
     }
 
-    /*@Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
-    }*/
-    
-<<<<<<< HEAD
+    }
     public void addname(View view){
     	Intent it = new Intent();
     	it.setClass(MainActivity.this,Addplayer.class);
     	startActivity(it);
-    	MainActivity.this.finish();
     }
     
     public void info(View view){
     	Intent it = new Intent();
     	it.setClass(MainActivity.this,Info.class);
     	startActivity(it);
-    	MainActivity.this.finish();
     }
-=======
-    
->>>>>>> mainpage  是第三頁
 }

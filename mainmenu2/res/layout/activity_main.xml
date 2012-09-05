@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/halfcourt"
+    android:gravity="left" >
+
+    <Button
+        android:id="@+id/btnInformation"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_style"
+        android:onClick="info"
+        android:text="@string/buttonname3" />
+
+    <Button
+        android:id="@+id/btnAddname"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_above="@+id/btnInformation"
+        android:layout_marginBottom="26dp"
+        android:layout_toLeftOf="@+id/btnInformation"
+        android:background="@drawable/button_style"
+        android:onClick="addname"
+        android:text="@string/buttonname1" />
+
+    <Button
+        android:id="@+id/btnChangename"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@+id/btnAddname"
+        android:layout_toRightOf="@+id/btnInformation"
+        android:background="@drawable/button_style"
+        android:onClick="changename"
+        android:text="@string/buttonname2" />
+
+</RelativeLayout>

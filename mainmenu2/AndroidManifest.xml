@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.menu2"
+    package="tw.android.mainmenu2"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -13,19 +13,23 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main" 
-            android:screenOrientation="landscape">
+            android:label="@string/title_activity_main"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Addplayer"
-            android:label="player">
+        <activity 
+            android:name=".Addplayer"
+            android:label="Player"
+            android:screenOrientation="landscape" >
         </activity>
-        <activity android:name=".Info"
-            	android:label="information">
+        <activity 
+            android:name=".Info"
+            android:label="Information"
+            android:screenOrientation="landscape" >
         </activity>
     </application>
 
