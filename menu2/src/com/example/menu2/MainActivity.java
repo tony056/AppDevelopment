@@ -1,4 +1,4 @@
-package tw.android.mainmenu2;
+package com.example.menu2;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -20,7 +20,6 @@ public class MainActivity extends Activity {
         return true;
     }*/
     
-<<<<<<< HEAD
     public void addname(View view){
     	Intent it = new Intent();
     	it.setClass(MainActivity.this,Addplayer.class);
@@ -34,7 +33,4 @@ public class MainActivity extends Activity {
     	startActivity(it);
     	MainActivity.this.finish();
     }
-=======
-    
->>>>>>> mainpage  是第三頁
 }
