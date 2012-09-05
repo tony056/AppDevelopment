@@ -14,21 +14,23 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
-    }
+    }*/
     
     public void addname(View view){
     	Intent it = new Intent();
-    	it.setClass(MainActivity.this,addplayer.class);
+    	it.setClass(MainActivity.this,Addplayer.class);
     	startActivity(it);
+    	MainActivity.this.finish();
     }
     
     public void info(View view){
     	Intent it = new Intent();
-    	it.setClass(MainActivity.this,addplayer.class);
+    	it.setClass(MainActivity.this,Info.class);
     	startActivity(it);
+    	MainActivity.this.finish();
     }
 }

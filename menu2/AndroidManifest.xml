@@ -21,6 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="Info"></activity>
+        <activity android:name="Addplayer"></activity>
+        <activity android:name="Main"
+            android:screenOrientation="landscape"
+            ></activity>
     </application>
 
 </manifest>
