@@ -14,8 +14,17 @@ import android.view.*;
 
 public class MainActivity extends Activity {
 	int number =10;
-    @SuppressLint({ "NewApi", "NewApi" })
-	@Override
+	int lastX,lastY;  
+	int tempX,tempY;
+	int tempX2,tempY2;
+	int[] tmpX = new int[3]; 
+	int[] tmpY = new int[3]; 
+	int[] tmpX2 = new int[3]; 
+	int[] tmpY2 = new int[3]; 
+	Button[] btn = new Button[3];
+	@SuppressLint({ "NewApi", "NewApi" })
+	
+    @Override
 	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,15 +37,17 @@ public class MainActivity extends Activity {
         final Button bu = (Button)findViewById(R.id.button1);
         final Button bu2 = (Button)findViewById(R.id.button2);
         final View text = (View)findViewById(R.id.textView1);
+        for(int y = 0;y<3;y++){
+        	int id = getResources().getIdentifier("button"+(y+3), "id", getPackageName());
+        	btn[y] = (Button)findViewById(id);
+        }
         //final int number = 10;
         bu.setText(number+" !!");
         bu2.setText((number+10)+" ??");
-        
-        bu.setOnTouchListener(new Button.OnTouchListener(){
+       
+        btn[0].setOnTouchListener(new Button.OnTouchListener(){
         	
-        	int lastX,lastY;  
-        	int tempX,tempY;
-        	int tempX2,tempY2;
+        	
               
       public boolean onTouch(View v, MotionEvent event) {  
     	  
@@ -44,92 +55,43 @@ public class MainActivity extends Activity {
     	  	 //int number = 10;
              int ea=event.getAction();  
              Log.i("TAG", "Touch:"+ea);   
-             
-               
-             switch(ea){  
-             case MotionEvent.ACTION_DOWN:             
-                
-              lastX=(int)event.getRawX();
-              lastY=(int)event.getRawY();
-              tempX = (int)bu.getLeft();
-              tempY = (int)bu.getTop();
-              tempX2 = (int)bu2.getLeft();
-              tempY2 = (int)bu2.getTop();
-              break;  
-              
-             case MotionEvent.ACTION_MOVE:  
-              int dx=(int)event.getRawX()-lastX;  
-              int dy=(int)event.getRawY()-lastY;             
-              
-              
-              int l=v.getLeft()+dx;   
-              int b=v.getBottom()+dy;  
-              int r=v.getRight()+dx;  
-              int t=v.getTop()+dy;  
-     
- 
-              if(l<0){  
-               l=0;      
-               r=l+v.getWidth();  
-              }  
-                
-              if(t<0){  
-               t=0;  
-               b=t+v.getHeight();  
-              }  
-                
-              if(r>screenWidth){  
-               r=screenWidth;  
-               l=r-v.getWidth();  
-              }  
-               
-              if(b>screenHeight){  
-               b=screenHeight;  
-               t=b-v.getHeight();  
-              }  
-              v.layout(l, t, r, b);  
-                
-              lastX=(int)event.getRawX();  
-              lastY=(int)event.getRawY();  
-              v.postInvalidate();             
-              break;  
-             case MotionEvent.ACTION_UP:
-            	 lastX=(int)event.getRawX();  
-                 lastY=(int)event.getRawY();  
-            	 final int subX,subX2;
-         		final int subY,subY2;
-                 subX=(int)bu2.getLeft();
-                 subX2=subX+bu2.getMeasuredWidth();
-                 subY=(int)bu2.getTop();
-                 subY2=subY+bu2.getMeasuredHeight();
-            	 int midX,midY;
-                 midX=(int)bu.getLeft()+(bu.getWidth())/2;
-                 midY=(int)bu.getTop()+(bu.getHeight())/2;
-                
-                 if(subX<=midX  &&  subY <= midY  )
-              		   {
-                	 		if(midX<=subX2 && midY<=subY2){
-              	   				/*number--;
-              	   				bu.setText(number+" !!");*/
-                	 			String str = bu2.getText().toString();
-                	 			bu2.setText(bu.getText().toString());
-                	 			bu.setText(str);
-                	 		}
-              		   } 
-              break;            
-             }
-
-                          
-             
-       return false;  
+             boolean df=func(ea,event,v,screenWidth,screenHeight,btn,btn[0]);
+       return df;  
       }});  
-bu2.setOnTouchListener(new Button.OnTouchListener(){
+        btn[1].setOnTouchListener(new Button.OnTouchListener(){
         	
-        	int lastX,lastY;  
+        	
+            
+            public boolean onTouch(View v, MotionEvent event) {  
+          	  
+          	  
+          	  	 //int number = 10;
+                   int ea=event.getAction();  
+                   Log.i("TAG", "Touch:"+ea);   
+                   boolean df=func(ea,event,v,screenWidth,screenHeight,btn,btn[1]);
+             return df;  
+            }});  
+        btn[2].setOnTouchListener(new Button.OnTouchListener(){
+        	
+        	
+            
+            public boolean onTouch(View v, MotionEvent event) {  
+          	  
+          	  
+          	  	 //int number = 10;
+                   int ea=event.getAction();  
+                   Log.i("TAG", "Touch:"+ea);   
+                   boolean df=func(ea,event,v,screenWidth,screenHeight,btn,btn[2]);
+             return df;  
+            }});  
+
+/*bu2.setOnTouchListener(new Button.OnTouchListener(){*/
+        	
+        	/*int lastX,lastY;  
         	int tempX,tempY;
-        	int tempX2,tempY2;
+        	int tempX2,tempY2;*/
               
-      public boolean onTouch(View v, MotionEvent event) {  
+      /*public boolean onTouch(View v, MotionEvent event) {  
     	  
     	  
     	  	 //int number = 10;
@@ -137,7 +99,7 @@ bu2.setOnTouchListener(new Button.OnTouchListener(){
              Log.i("TAG", "Touch:"+ea);   
              
                
-             switch(ea){  
+             /*switch(ea){  
              case MotionEvent.ACTION_DOWN:             
                 
               lastX=(int)event.getRawX();
@@ -200,20 +162,20 @@ bu2.setOnTouchListener(new Button.OnTouchListener(){
                  if(subX<=midX  &&  subY <= midY  )
               		   {
                 	 		if(midX<=subX2 && midY<=subY2){
-              	   				/*number--;
-              	   				bu.setText(number+" !!");*/
+              	   				number--;
+              	   				bu.setText(number+" !!");
                 	 			String str = bu.getText().toString();
                 	 			bu.setText(bu2.getText().toString());
                 	 			bu2.setText(str);
                 	 		}
               		   } 
               break;            
-             }
-
+             }*/
+        /*boolean df = func(ea,event,v,bu,bu2,screenWidth,screenHeight,btn);
                           
              
-       return false;  
-      }});  
+       return df;  
+      }});*/
         	
 
 
@@ -227,7 +189,102 @@ bu2.setOnTouchListener(new Button.OnTouchListener(){
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
-    
+    public boolean func(int ea,MotionEvent event,View v,int screenWidth,int screenHeight,Button btn[],Button bu){
+    	int startX;
+    	int startY;
+   	 switch(ea){  
+        case MotionEvent.ACTION_DOWN:             
+         startX = (int)event.getRawX();
+         startY = (int)event.getRawY();
+         lastX=(int)event.getRawX();
+         lastY=(int)event.getRawY();
+         //tempX = (int)bu.getLeft();
+         //tempY = (int)bu.getTop();
+         //tempX2 = (int)bu2.getLeft();
+         //tempY2 = (int)bu2.getTop();
+         
+         break;  
+         
+        case MotionEvent.ACTION_MOVE:  
+         int dx=(int)event.getRawX()-lastX;  
+         int dy=(int)event.getRawY()-lastY;             
+         
+         
+         int l=v.getLeft()+dx;   
+         int b=v.getBottom()+dy;  
+         int r=v.getRight()+dx;  
+         int t=v.getTop()+dy;  
+
+
+         if(l<0){  
+          l=0;      
+          r=l+v.getWidth();  
+         }  
+           
+         if(t<0){  
+          t=0;  
+          b=t+v.getHeight();  
+         }  
+           
+         if(r>screenWidth){  
+          r=screenWidth;  
+          l=r-v.getWidth();  
+         }  
+          
+         if(b>screenHeight){  
+          b=screenHeight;  
+          t=b-v.getHeight();  
+         }  
+         v.layout(l, t, r, b);  
+           
+         lastX=(int)event.getRawX();  
+         lastY=(int)event.getRawY();  
+         v.postInvalidate();             
+         break;  
+        case MotionEvent.ACTION_UP:
+       	 	lastX=(int)event.getRawX();  
+            lastY=(int)event.getRawY();  
+       	 	final int subX,subX2;
+    		final int subY,subY2;
+            //subX=(int)bu2.getLeft();
+            //subX2=subX+bu2.getMeasuredWidth();
+            //subY=(int)bu2.getTop();
+            //subY2=subY+bu2.getMeasuredHeight();
+            int midX,midY;
+            for(int h=0;h<3;h++){
+           	 tmpX[h] = (int)btn[h].getLeft();
+           	 tmpY[h] = (int)btn[h].getTop();
+           	 tmpX2[h] = (int)tmpX[h]+btn[h].getMeasuredWidth();
+           	 tmpY2[h] = (int)tmpY[h]+btn[h].getMeasuredHeight();
+            }
+            midX=(int)bu.getLeft()+(bu.getWidth())/2;
+            midY=(int)bu.getTop()+(bu.getHeight())/2;
+           
+            /*if(subX<=midX  &&  subY <= midY  )
+            {
+           	 	if(midX<=subX2 && midY<=subY2){
+         	   				number--;
+         	   				bu.setText(number+" !!");
+           	 		String str = bu2.getText().toString();
+           	 		bu2.setText(bu.getText().toString());
+           	 		bu.setText(str);
+           	 	}
+         	}*/
+            for(int g =0;g<3;g++){
+            		if(tmpX[g]<=midX && tmpY[g]<=midY){
+            			if(midX<=tmpX2[g] && midY<=tmpY2[g]){
+            			String str = btn[g].getText().toString();
+               	 		btn[g].setText(bu.getText( ).toString());
+               	 		bu.setText(str);
+            			}
+            			
+            		}
+            		
+            }
+         break;            
+        }
+   	 return false;
+   }
     
     
 }

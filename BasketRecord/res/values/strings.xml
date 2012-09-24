@@ -7,11 +7,13 @@
     <string name="name">Input name/no:</string>
     <string name="next"><u>Next</u></string>
 	<string name="data">Data</string>
-	<string name="empty">Fucking failed!!</string>
+	<string name="empty">No data in the database!!</string>
 	<string name="old">to OLD!</string>
 	<string name="test">TEST</string>
 	<string name="win">W</string>
 	<string name="create">Create</string>
 	<string name="printname">Name: </string>
 	<string name="printnumber">Number: </string>
+	<string name="insert">Insert</string>
+	<string name="finishInsert">finish insert!!</string>
 </resources>

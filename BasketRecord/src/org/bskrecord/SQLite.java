@@ -33,6 +33,7 @@ public class SQLite extends SQLiteOpenHelper {
 	public static final String DAY = "day";
 	public static final String SELFPTS = "selfpts";
 	public static final String OPPPTS = "opppts";
+	public static final String YEAR = "year";
 	public SQLite(Context context, String name, CursorFactory factory,int version) {
 		super(context,name,factory,version);
 		this.getWritableDatabase();
@@ -52,7 +53,7 @@ public class SQLite extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + TB_NAME);
 		onCreate(db);
 	}
-	public void addplayer(String name,String number,String tableName,String recordname,int month,int day){
+	public void addplayer(String name,String number,String tableName,String recordname,int month,int day,int year){
 		ContentValues values = new ContentValues();
 		values.put(SQLite.NAME, name);
 		values.put(SQLite.NUMBER, number);
@@ -74,6 +75,7 @@ public class SQLite extends SQLiteOpenHelper {
 		values.put(SQLite.DAY, day);
 		values.put(SQLite.SELFPTS, 0);
 		values.put(SQLite.OPPPTS, 0);
+		values.put(SQLite.YEAR, year);
 		this.getWritableDatabase().insert(tableName,null, values);
 		this.getWritableDatabase().close();
 	}
@@ -99,7 +101,8 @@ public class SQLite extends SQLiteOpenHelper {
 				+ MONTH + " INTEGER, "
 				+ DAY + " INTEGER, "
 				+ SELFPTS + " INTEGER, "
-				+ OPPPTS + " INTEGER"
+				+ OPPPTS + " INTEGER, "
+				+ YEAR + " INTEGER"
 				+ ");");
 	}
 	/*public void outputData(){

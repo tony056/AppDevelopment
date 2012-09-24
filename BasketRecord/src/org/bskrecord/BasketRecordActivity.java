@@ -68,9 +68,12 @@ public class BasketRecordActivity extends Activity {
     	});
     }*/
     public void getNew(View v){
-    	setContentView(R.layout.second);
+    	Intent haha = new Intent();
+    	haha.setClass(BasketRecordActivity.this, Information.class);
+    	startActivity(haha);
+    	/*setContentView(R.layout.second);
     	
-    	goNext();
+    	goNext();*/
     }
     public void goNext(){
     	int i = 0;
@@ -84,7 +87,7 @@ public class BasketRecordActivity extends Activity {
     }
     public void toOld(View v){
     	Intent oldData = new Intent();
-    	oldData.setClass(BasketRecordActivity.this, InsertName.class);
+    	oldData.setClass(BasketRecordActivity.this, OldData.class);
     	startActivity(oldData);
     }
     private void createdb(){
@@ -108,19 +111,19 @@ public class BasketRecordActivity extends Activity {
     	str.append(tableName).append(tableMonth).append(tableDay);
     	
     	
-    	insertdata(str.toString(),month,day,tableName);
+    	//insertdata(str.toString(),month,day,tableName);
     	setContentView(R.layout.third);
     	// viewData(str.toString());
     	//QQ.outputData();
     }
-    public void insertdata(String tableName , int month,int day,String opp){
+    /*public void insertdata(String tableName , int month,int day,String opp){
     	QQ.createTable(tableName);
     	
     	for(int j=0;j<5;j++){
     		QQ.addplayer(name[j].getText().toString(), number[j].getText().toString(),tableName,opp,month,day);
     	}
     	
-    }
+    }*/
     /*private void viewData(String tableName){
     	Cursor c = QQ.getWritableDatabase().query(tableName, null, null, null, null, null, null);
     	StringBuilder str = new StringBuilder("");
