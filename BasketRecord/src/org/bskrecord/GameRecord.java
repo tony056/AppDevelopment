@@ -42,8 +42,8 @@ public class GameRecord extends Activity{
 		DisplayMetrics dm = getResources().getDisplayMetrics();
         final int screenWidth = dm.widthPixels;  
         final int screenHeight = dm.heightPixels-50;
-        //sfls=getdata.getInt("sfls");
-        //oppfls=getdata.getInt("ofls");
+        sfls=getdata.getInt("sfls");
+        oppfls=getdata.getInt("ofls");
         Num=getdata.getStringArray("num");
 		qq = new SQLite(GameRecord.this,"data",null,1);
 		data = qq.getWritableDatabase();
@@ -441,12 +441,12 @@ public class GameRecord extends Activity{
 		int fls = player.getInt(flIndex);
 		if(flag==1){
 		fls++;
-		sfls++;
+		//sfls++;
 		}
 		else{
 			if(fls>0){
 			fls--;
-			sfls--;
+			//sfls--;
 			}
 		}
 		Show2(fls,fl,"¥Ç³W");

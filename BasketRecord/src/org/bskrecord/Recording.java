@@ -412,8 +412,8 @@ public class Recording extends Activity {
 		getData.putString("table", table.getString("table"));
 		getData.putStringArray("num", fullNum);
 		getData.putInt("ourpts", ourpts);
-		//getData.putInt("sfls", selffl);
-		//getData.putInt("ofls", oppfl);
+		getData.putInt("sfls", selffl);
+		getData.putInt("ofls", oppfl);
 		//getData.putStringArray("mNum", mNum);
 		//getData.putStringArray("bNum", bNum);
 		btnpg.putExtras(getData);
