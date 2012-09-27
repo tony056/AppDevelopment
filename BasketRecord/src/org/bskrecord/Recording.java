@@ -48,8 +48,8 @@ public class Recording extends Activity {
 		Bundle getname = this.getIntent().getExtras();
 		String table = getname.getString("table");
 		fullNum = getname.getStringArray("num");
-		//selffl = getname.getInt("sfls");
-		//oppfl = getname.getInt("ofls");
+		selffl = getname.getInt("sfls");
+		oppfl = getname.getInt("ofls");
 		ourpts = getname.getInt("ourpts");
 		String[] columns = {"number"};
 		DisplayMetrics dm = getResources().getDisplayMetrics();
