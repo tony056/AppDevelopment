@@ -12,7 +12,7 @@
         android:layout_marginBottom="26dp"
         android:layout_marginRight="30dp"
         android:layout_weight="1"
-        android:onClick="bfuncTo"
+        
         android:text="失誤" />
 
     <Button
@@ -24,7 +24,7 @@
         android:layout_marginRight="17dp"
         android:layout_toLeftOf="@+id/btnTo"
         android:layout_weight="1"
-        android:onClick="bfuncFoul"
+        
         android:text="犯規" />
 
     <Button
@@ -36,7 +36,7 @@
         android:layout_marginRight="17dp"
         android:layout_toLeftOf="@+id/btnFoul"
         android:layout_weight="1"
-        android:onClick="bfuncBlk"
+        
         android:text="阻攻" />
 
     <Button
@@ -48,7 +48,7 @@
         android:layout_marginRight="18dp"
         android:layout_toLeftOf="@+id/btnBlk"
         android:layout_weight="1"
-        android:onClick="bfuncStl"
+        
         android:text="抄截" />
 
     <Button
@@ -60,7 +60,7 @@
         android:layout_marginRight="17dp"
         android:layout_toLeftOf="@+id/btnStl"
         android:layout_weight="1"
-        android:onClick="bfuncAst"
+        
         android:text="助攻" />
 
     <Button
@@ -72,7 +72,7 @@
         android:layout_marginRight="17dp"
         android:layout_toLeftOf="@+id/btnAst"
         android:layout_weight="1"
-        android:onClick="bfuncReb"
+        
         android:text="籃板" />
 
     <Button
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/btnTo"
         android:layout_toRightOf="@+id/btnFoul"
-        android:onClick="bfuncFreethrowOut"
+        
         android:text="X" />
 
     <Button
@@ -91,7 +91,7 @@
         android:layout_alignBaseline="@+id/btnFreethrowOut"
         android:layout_alignBottom="@+id/btnFreethrowOut"
         android:layout_alignLeft="@+id/btnFoul"
-        android:onClick="bfuncFreethrowIn"
+        
         android:text="O" />
 
     <Button
@@ -102,7 +102,7 @@
         android:layout_alignBottom="@+id/btnFreethrowIn"
         android:layout_toRightOf="@+id/btnStl"
         android:layout_weight="1"
-        android:onClick="bfuncThreepOut"
+        
         android:text="X" />
 
     <Button
@@ -113,7 +113,7 @@
         android:layout_alignBottom="@+id/btnThreepOut"
         android:layout_alignLeft="@+id/btnStl"
         android:layout_weight="1"
-        android:onClick="bfuncThreepIn"
+        
         android:text="O" />
 
     <Button
@@ -124,7 +124,7 @@
         android:layout_alignBottom="@+id/btnThreepIn"
         android:layout_toRightOf="@+id/btnReb"
         android:layout_weight="1"
-        android:onClick="bfuncTwopOut"
+        
         android:text="X" />
 
     <Button
@@ -135,7 +135,7 @@
         android:layout_alignBottom="@+id/btnTwopOut"
         android:layout_alignLeft="@+id/btnReb"
         android:layout_weight="1"
-        android:onClick="bfuncTwopIn"
+        
         android:text="O" />
 
     <TableLayout
@@ -194,7 +194,7 @@
         android:layout_alignRight="@+id/btnFreethrowOut"
         android:layout_alignTop="@+id/tableLayout1"
         android:background="#00000000"
-        android:onClick="bfuncDelete"
+        
         android:src="@drawable/trash" />
 
     <TextView
