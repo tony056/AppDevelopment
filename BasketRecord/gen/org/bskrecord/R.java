@@ -23,7 +23,7 @@ public final class R {
         public static final int txt=0x7f020009;
     }
     public static final class id {
-        public static final int Freethrow=0x7f07001d;
+        public static final int Freethrow=0x7f07001e;
         public static final int HZS=0x7f070031;
         public static final int LinearLayout1=0x7f070085;
         public static final int LinearLayout2=0x7f070032;
@@ -31,8 +31,8 @@ public final class R {
         public static final int TableLayout1=0x7f070020;
         public static final int TableLayout2=0x7f070027;
         public static final int TableRow1=0x7f070039;
-        public static final int Threep=0x7f070018;
-        public static final int Twop=0x7f07001f;
+        public static final int Threep=0x7f07001b;
+        public static final int Twop=0x7f07001d;
         public static final int aFouladd=0x7f070053;
         public static final int addscore=0x7f070052;
         public static final int afoullight1=0x7f070054;
@@ -60,19 +60,19 @@ public final class R {
         public static final int blackb=0x7f070004;
         public static final int blue=0x7f07000c;
         public static final int blueb=0x7f070008;
-        public static final int btnAst=0x7f070013;
-        public static final int btnBlk=0x7f070010;
-        public static final int btnDelete=0x7f07000d;
-        public static final int btnFoul=0x7f070014;
-        public static final int btnFreethrowIn=0x7f07001b;
-        public static final int btnFreethrowOut=0x7f07001c;
-        public static final int btnReb=0x7f070011;
-        public static final int btnStl=0x7f070012;
+        public static final int btnAst=0x7f070011;
+        public static final int btnBlk=0x7f07000f;
+        public static final int btnDelete=0x7f07001c;
+        public static final int btnFoul=0x7f07000e;
+        public static final int btnFreethrowIn=0x7f070014;
+        public static final int btnFreethrowOut=0x7f070013;
+        public static final int btnReb=0x7f070012;
+        public static final int btnStl=0x7f070010;
         public static final int btnThreepIn=0x7f070016;
-        public static final int btnThreepOut=0x7f070017;
-        public static final int btnTo=0x7f070015;
-        public static final int btnTwopIn=0x7f070019;
-        public static final int btnTwopOut=0x7f07001a;
+        public static final int btnThreepOut=0x7f070015;
+        public static final int btnTo=0x7f07000d;
+        public static final int btnTwopIn=0x7f070018;
+        public static final int btnTwopOut=0x7f070017;
         public static final int button1=0x7f070084;
         public static final int clothescolors=0x7f070000;
         public static final int date=0x7f070033;
@@ -115,7 +115,7 @@ public final class R {
         public static final int ourteamname=0x7f070059;
         public static final int playerName=0x7f070023;
         public static final int playerNumber=0x7f070026;
-        public static final int playerscore=0x7f07000f;
+        public static final int playerscore=0x7f07001a;
         public static final int printName=0x7f070022;
         public static final int printNumber=0x7f070025;
         public static final int record=0x7f070086;
@@ -131,7 +131,7 @@ public final class R {
         public static final int showinsert=0x7f070038;
         public static final int tableData=0x7f070081;
         public static final int tableDay=0x7f070083;
-        public static final int tableLayout1=0x7f07000e;
+        public static final int tableLayout1=0x7f070019;
         public static final int tableMonth=0x7f070082;
         public static final int textView1=0x7f070072;
         public static final int textView2=0x7f070075;
@@ -160,7 +160,7 @@ public final class R {
         public static final int txt8=0x7f070040;
         public static final int txt9=0x7f070041;
         public static final int txtuu=0x7f07004d;
-        public static final int viewPlayerinfo=0x7f07001e;
+        public static final int viewPlayerinfo=0x7f07001f;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

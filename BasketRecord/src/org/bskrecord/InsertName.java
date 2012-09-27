@@ -51,6 +51,7 @@ public class InsertName extends Activity {
 		table.putInt("sfls", 0);
 		table.putInt("ofls", 0);
 		table.putInt("ourpts", 0);
+		table.putInt("opppts", 0);
 		toRecord.putExtras(table);
 		toRecord.setClass(InsertName.this, Recording.class);
 		startActivity(toRecord);

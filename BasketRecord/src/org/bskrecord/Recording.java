@@ -51,6 +51,7 @@ public class Recording extends Activity {
 		selffl = getname.getInt("sfls");
 		oppfl = getname.getInt("ofls");
 		ourpts = getname.getInt("ourpts");
+		opppts = getname.getInt("opppts");
 		String[] columns = {"number"};
 		DisplayMetrics dm = getResources().getDisplayMetrics();
         final int screenWidth = dm.widthPixels;  
@@ -224,7 +225,7 @@ public class Recording extends Activity {
 		mBtn[4].setOnClickListener(new Button.OnClickListener(){
 			@Override
 			public void onClick(View v){
-				toBtnpage(mBtn[0].getText().toString());
+				toBtnpage(mBtn[4].getText().toString());
 			}
 		});
 		
@@ -414,6 +415,7 @@ public class Recording extends Activity {
 		getData.putInt("ourpts", ourpts);
 		getData.putInt("sfls", selffl);
 		getData.putInt("ofls", oppfl);
+		getData.putInt("opppts", opppts);
 		//getData.putStringArray("mNum", mNum);
 		//getData.putStringArray("bNum", bNum);
 		btnpg.putExtras(getData);

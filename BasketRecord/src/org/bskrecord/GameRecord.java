@@ -33,7 +33,7 @@ public class GameRecord extends Activity{
 	String table = "";
 	String num = "";
 	String[] Num = new String[16];
-	int teampts = 0;
+	int teampts = 0,opppts=0;
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -51,6 +51,7 @@ public class GameRecord extends Activity{
 		table = getdata.getString("table");
 		num = getdata.getString("number");
 		teampts = getdata.getInt("ourpts");
+		opppts = getdata.getInt("opppts");
 		String[] column = {"selfpts","opppts"};
 		String selection = "number LIKE "+num;
 		team = data2.query(table, column, null, null, null, null, null);
@@ -248,7 +249,7 @@ public class GameRecord extends Activity{
 			twoap++;
 		}
 		else{
-			if(twoap>0){
+			if(twoap>0&&(twomd!=twoap)){
 			twoap--;
 			}
 		}
@@ -297,7 +298,7 @@ public class GameRecord extends Activity{
 		if(flag==1)
 			threeap++;
 		else{
-			if(threeap>0){
+			if(threeap>0&&(threeap!=threemd)){
 			threeap--;
 			}
 		}
@@ -320,7 +321,7 @@ public class GameRecord extends Activity{
 			teampts=selfpt;
 		}
 		else{
-			if(pts>0){
+			if(pts>0&&freemd>0&&freeap>0){
 			pts--;
 			freemd--;
 			freeap--;
@@ -348,7 +349,7 @@ public class GameRecord extends Activity{
 		freeap++;
 		}
 		else{
-			if(freeap>0){
+			if(freeap>0&&(freeap!=freemd)){
 			freeap--;
 			}
 		}
@@ -487,6 +488,7 @@ public class GameRecord extends Activity{
 		tableback.putInt("sfls", sfls);
 		tableback.putInt("ofls", oppfls);
 		tableback.putInt("ourpts", teampts);
+		tableback.putInt("opppts", opppts);
 		Intent back = new Intent();
 		back.putExtras(tableback);
 		back.setClass(GameRecord.this, Recording.class);
