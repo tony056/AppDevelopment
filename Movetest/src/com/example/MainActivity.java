@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.TextView;
 import android.view.*;
 
 public class MainActivity extends Activity {
@@ -22,6 +23,8 @@ public class MainActivity extends Activity {
 	int[] tmpX2 = new int[3]; 
 	int[] tmpY2 = new int[3]; 
 	Button[] btn = new Button[3];
+	int startX,endX;
+	int startY,endY;
 	@SuppressLint({ "NewApi", "NewApi" })
 	
     @Override
@@ -44,6 +47,13 @@ public class MainActivity extends Activity {
         //final int number = 10;
         bu.setText(number+" !!");
         bu2.setText((number+10)+" ??");
+        bu.setOnTouchListener(new Button.OnTouchListener(){
+        	public boolean onTouch(View v,MotionEvent event){
+        		int ea = event.getAction();
+        		boolean df = func(ea,event,v,screenWidth,screenHeight,btn,bu);
+        		return df;
+        	}
+        });
        
         btn[0].setOnTouchListener(new Button.OnTouchListener(){
         	
@@ -190,8 +200,7 @@ public class MainActivity extends Activity {
         return true;
     }
     public boolean func(int ea,MotionEvent event,View v,int screenWidth,int screenHeight,Button btn[],Button bu){
-    	int startX;
-    	int startY;
+    	
    	 switch(ea){  
         case MotionEvent.ACTION_DOWN:             
          startX = (int)event.getRawX();
@@ -242,10 +251,29 @@ public class MainActivity extends Activity {
          v.postInvalidate();             
          break;  
         case MotionEvent.ACTION_UP:
+        	endX=(int)event.getRawX();
+        	endY=(int)event.getRawY();
        	 	lastX=(int)event.getRawX();  
             lastY=(int)event.getRawY();  
        	 	final int subX,subX2;
     		final int subY,subY2;
+    		if(startX==endX&&startY==endY){
+    			TextView vi = (TextView)findViewById(R.id.textView1);
+    			vi.setText("fuck");
+    			/*for(int y=0;y<3;y++){
+    				if(btn[y]==bu){
+    					if(y==0){
+    						h3(v);
+    					}
+    					if(y==1){
+    						h4(v);
+    					}
+    					if(y==2){
+    						h5(v);
+    					}
+    				}
+    			}*/
+    		}else{
             //subX=(int)bu2.getLeft();
             //subX2=subX+bu2.getMeasuredWidth();
             //subY=(int)bu2.getTop();
@@ -275,16 +303,25 @@ public class MainActivity extends Activity {
             			if(midX<=tmpX2[g] && midY<=tmpY2[g]){
             			String str = btn[g].getText().toString();
                	 		btn[g].setText(bu.getText( ).toString());
-               	 		bu.setText(str);
+               	 		bu.setText(Integer.toString(g));
+               	 		break;
             			}
             			
             		}
             		
             }
+    		}
          break;            
         }
    	 return false;
    }
-    
-    
+   /* public void h3 (View v){
+    	btn[0].setText("work!!");
+    }
+    public void h4 (View v){
+    	btn[1].setText("star!!");
+    }
+    public void h5 (View v){
+    	btn[2].setText("done!!");
+    }*/
 }

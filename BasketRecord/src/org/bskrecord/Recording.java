@@ -1,9 +1,13 @@
 package org.bskrecord;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -11,89 +15,394 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class Recording extends Activity {
-	Button[] mBtn = new Button[5];
-	Button[] bBtn = new Button[10];
-	String[] mNum = new String[5];
-	String[] bNum = new String[10];
+	String[] mNum = new String[6];
+	String[] bNum = new String[11];
+	String[] fullNum = new String[16];
 	int lastX,lastY;
 	int k=0,n=0;
-	int[] tmpX = new int[10];
-	int[] tmpY = new int[10];
-	int[] tmpX2 = new int[10];
-	int[] tmpY2 = new int[10];
-	int flag =0 ;
+	int[] tmpX = new int[11];
+	int[] tmpY = new int[11];
+	int[] tmpX2 = new int[11];
+	int[] tmpY2 = new int[11];
+	int[] tbX = new int[11];
+	int[] tbY = new int[11];
+	int[] tbX2 = new int[11];
+	int[] tbY2 = new int[11];
+	int startX,endX;
+	int startY,endY;
+	int point = 0;
+	int selffl = 0,oppfl = 0;
+	int opppts = 0,ourpts=0;
+	String str = "";
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.recordpage);
+		final Button[] mBtn = new Button[6];
+		final Button[] bBtn = new Button[11];
+		final String[] fnum = {"","","","","","","","","","",""};
 		Bundle getname = this.getIntent().getExtras();
 		String table = getname.getString("table");
+		fullNum = getname.getStringArray("num");
+		//selffl = getname.getInt("sfls");
+		//oppfl = getname.getInt("ofls");
+		ourpts = getname.getInt("ourpts");
 		String[] columns = {"number"};
 		DisplayMetrics dm = getResources().getDisplayMetrics();
         final int screenWidth = dm.widthPixels;  
         final int screenHeight = dm.heightPixels-50;
-        SQLite qq = new SQLite(Recording.this,"data",null,1);
+        /*SQLite qq = new SQLite(Recording.this,"data",null,1);
         SQLiteDatabase ha = qq.getWritableDatabase();
         Cursor c = ha.query(table, columns, null, null, null, null, null);
         int numIndex = c.getColumnIndexOrThrow("number");
-        c.moveToFirst();
+        c.moveToFirst();*/
 		for(int i=0;i<5;i++){
 			int getmName = getResources().getIdentifier("mainplayer"+(i+1), "id", getPackageName());
 			mBtn[i] = (Button)findViewById(getmName);
-			mBtn[i].setText(c.getString(numIndex));
-			mNum[i] = mBtn[i].getText().toString();
-			c.moveToNext();
+			mNum[i] = fullNum[i];
+			//mNum[i] = c.getString(numIndex);
+			mBtn[i].setText(mNum[i]);
+			//c.moveToNext();
 		}
 		for(int j=0;j<10;j++){
 			int getbName = getResources().getIdentifier("benchplayer"+(j+1), "id", getPackageName());
 			bBtn[j] = (Button)findViewById(getbName);
-			if(!c.isAfterLast()){
-				bBtn[j].setText(c.getString(numIndex));
-				bNum[j] = bBtn[j].getText().toString();
-				c.moveToNext();
-			}
-			else{
-				 flag = j;
-			}
+			//if(!c.isAfterLast()){
+				
+				bNum[j] = fullNum[j+5];
+				bBtn[j].setText(bNum[j]);
+				fnum[j]=bNum[j];
+				//c.moveToNext();
+			//}
+			//else{
+				 
+				// c.close();
+				 //ha.close();
+			//}
 		}
-		for(k=0;k<5;k++){
-			mBtn[k].setOnTouchListener(new Button.OnTouchListener(){
+		showopts(opppts);
+		showwepts(ourpts);
+		getbfoul(oppfl);
+		getafoul(selffl);
+		/*mBtn[0].setOnTouchListener(new Button.OnTouchListener(){
+			public boolean onTouch(View v, MotionEvent event) {
+				int ea=event.getAction();  
+	             Log.i("TAG", "Touch:"+ea);   
+	             boolean df=func(ea,event,v,screenWidth,screenHeight,bBtn,mBtn[0],1);
+	             return df;  
+			}
+		});*/
+		
+        	
+		
+        
+		
+		mBtn[0].setOnLongClickListener(new Button.OnLongClickListener(){
+			@Override
+			public boolean onLongClick(View v) {
+				Builder builder = new Builder(Recording.this);
+				builder.setTitle("蠢干瞴");
+		        builder.setItems(fnum, new DialogInterface.OnClickListener(){
+		        	public void onClick(DialogInterface dialog, int which) {
+		    			// TODO Auto-generated method stub
+		    			str = fnum[which];
+		    			getNum(mBtn[0],bBtn,fnum);
+		    			
+		    			//Toast.makeText(Recording.this, "fuck!!!", Toast.LENGTH_LONG).show();
+		    			}
+		           });
+		        final AlertDialog mutiItemDialog = builder.create();
+		        mutiItemDialog.show();	
+				return false;
+		        }
+        });
+		mBtn[0].setOnClickListener(new Button.OnClickListener(){
+			public void onClick(View v){
+				toBtnpage(mBtn[0].getText().toString());
+			}
+		});
+
+		mBtn[1].setOnLongClickListener(new Button.OnLongClickListener(){
+			@Override
+			public boolean onLongClick(View v) {
+				Builder builder = new Builder(Recording.this);
+				builder.setTitle("蠢干瞴");
+		        builder.setItems(fnum, new DialogInterface.OnClickListener(){
+		        	public void onClick(DialogInterface dialog, int which) {
+		    			// TODO Auto-generated method stub
+		    			str = fnum[which];
+		    			getNum(mBtn[1],bBtn,fnum);
+		    			
+		    			//Toast.makeText(Recording.this, "fuck!!!", Toast.LENGTH_LONG).show();
+		    			}
+		           });
+		        final AlertDialog mutiItemDialog = builder.create();
+		        mutiItemDialog.show();	
+				return false;
+		        }
+        });
+		mBtn[1].setOnClickListener(new Button.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				toBtnpage(mBtn[1].getText().toString());
+			}
+		});
+		mBtn[2].setOnLongClickListener(new Button.OnLongClickListener(){
+			@Override
+			public boolean onLongClick(View v) {
+				Builder builder = new Builder(Recording.this);
+				builder.setTitle("蠢干瞴");
+		        builder.setItems(fnum, new DialogInterface.OnClickListener(){
+		        	public void onClick(DialogInterface dialog, int which) {
+		    			// TODO Auto-generated method stub
+		    			str = fnum[which];
+		    			getNum(mBtn[2],bBtn,fnum);
+		    			
+		    			//Toast.makeText(Recording.this, "fuck!!!", Toast.LENGTH_LONG).show();
+		    			}
+		           });
+		        final AlertDialog mutiItemDialog = builder.create();
+		        mutiItemDialog.show();	
+				return false;
+		        }
+        });
+		
+		mBtn[2].setOnClickListener(new Button.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				toBtnpage(mBtn[2].getText().toString());
+			}
+		});
+		mBtn[3].setOnLongClickListener(new Button.OnLongClickListener(){
+			@Override
+			public boolean onLongClick(View v) {
+				Builder builder = new Builder(Recording.this);
+				builder.setTitle("蠢干瞴");
+		        builder.setItems(fnum, new DialogInterface.OnClickListener(){
+		        	public void onClick(DialogInterface dialog, int which) {
+		    			// TODO Auto-generated method stub
+		    			str = fnum[which];
+		    			getNum(mBtn[3],bBtn,fnum);
+		    			
+		    			//Toast.makeText(Recording.this, "fuck!!!", Toast.LENGTH_LONG).show();
+		    			}
+		           });
+		        final AlertDialog mutiItemDialog = builder.create();
+		        mutiItemDialog.show();	
+				return false;
+		        }
+        });
+		mBtn[3].setOnClickListener(new Button.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				toBtnpage(mBtn[3].getText().toString());
+			}
+		});
+		mBtn[4].setOnLongClickListener(new Button.OnLongClickListener(){
+			@Override
+			public boolean onLongClick(View v) {
+				Builder builder = new Builder(Recording.this);
+				builder.setTitle("蠢干瞴");
+		        builder.setItems(fnum, new DialogInterface.OnClickListener(){
+		        	public void onClick(DialogInterface dialog, int which) {
+		    			// TODO Auto-generated method stub
+		    			str = fnum[which];
+		    			getNum(mBtn[4],bBtn,fnum);
+		    			
+		    			//Toast.makeText(Recording.this, "fuck!!!", Toast.LENGTH_LONG).show();
+		    			}
+		           });
+		        final AlertDialog mutiItemDialog = builder.create();
+		        mutiItemDialog.show();	
+				return false;
+		        }
+        });
+		mBtn[4].setOnClickListener(new Button.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				toBtnpage(mBtn[0].getText().toString());
+			}
+		});
+		
+			/*bBtn[0].setOnTouchListener(new Button.OnTouchListener(){
 				public boolean onTouch(View v, MotionEvent event) {
 					int ea=event.getAction();  
 		             Log.i("TAG", "Touch:"+ea);   
-		             boolean df=func(ea,event,v,screenWidth,screenHeight,bBtn,mBtn[k]);
+		             boolean df=func(ea,event,v,screenWidth,screenHeight,mBtn,bBtn[0],0);
 		             return df;  
 				}
+				
 			});
-		}
-		for(n=0;n<10;n++){
-			bBtn[n].setOnTouchListener(new Button.OnTouchListener(){
+			bBtn[1].setOnTouchListener(new Button.OnTouchListener(){
 				public boolean onTouch(View v, MotionEvent event) {
 					int ea=event.getAction();  
 		             Log.i("TAG", "Touch:"+ea);   
-		             boolean df=func(ea,event,v,screenWidth,screenHeight,mBtn,bBtn[n]);
+		             boolean df=func(ea,event,v,screenWidth,screenHeight,mBtn,bBtn[1],0);
 		             return df;  
 				}
 			});
-		}
+			bBtn[2].setOnTouchListener(new Button.OnTouchListener(){
+				public boolean onTouch(View v, MotionEvent event) {
+					int ea=event.getAction();  
+		             Log.i("TAG", "Touch:"+ea);   
+		             boolean df=func(ea,event,v,screenWidth,screenHeight,mBtn,bBtn[2],0);
+		             return df;  
+				}
+			});
+			bBtn[3].setOnTouchListener(new Button.OnTouchListener(){
+				public boolean onTouch(View v, MotionEvent event) {
+					int ea=event.getAction();  
+		             Log.i("TAG", "Touch:"+ea);   
+		             boolean df=func(ea,event,v,screenWidth,screenHeight,mBtn,bBtn[3],0);
+		             return df;  
+				}
+			});
+			bBtn[4].setOnTouchListener(new Button.OnTouchListener(){
+				public boolean onTouch(View v, MotionEvent event) {
+					int ea=event.getAction();  
+		             Log.i("TAG", "Touch:"+ea);   
+		             boolean df=func(ea,event,v,screenWidth,screenHeight,mBtn,bBtn[4],0);
+		             return df;  
+				}
+			});
+			bBtn[5].setOnTouchListener(new Button.OnTouchListener(){
+				public boolean onTouch(View v, MotionEvent event) {
+					int ea=event.getAction();  
+		             Log.i("TAG", "Touch:"+ea);   
+		             boolean df=func(ea,event,v,screenWidth,screenHeight,mBtn,bBtn[5],0);
+		             return df;  
+				}
+			});
+			bBtn[6].setOnTouchListener(new Button.OnTouchListener(){
+				public boolean onTouch(View v, MotionEvent event) {
+					int ea=event.getAction();  
+		             Log.i("TAG", "Touch:"+ea);   
+		             boolean df=func(ea,event,v,screenWidth,screenHeight,mBtn,bBtn[6],0);
+		             return df;  
+				}
+			});
+			bBtn[7].setOnTouchListener(new Button.OnTouchListener(){
+				public boolean onTouch(View v, MotionEvent event) {
+					int ea=event.getAction();  
+		             Log.i("TAG", "Touch:"+ea);   
+		             boolean df=func(ea,event,v,screenWidth,screenHeight,mBtn,bBtn[7],0);
+		             return df;  
+				}
+			});
+			bBtn[8].setOnTouchListener(new Button.OnTouchListener(){
+				public boolean onTouch(View v, MotionEvent event) {
+					int ea=event.getAction();  
+		             Log.i("TAG", "Touch:"+ea);   
+		             boolean df=func(ea,event,v,screenWidth,screenHeight,mBtn,bBtn[8],0);
+		             return df;  
+				}
+			});
+			bBtn[9].setOnTouchListener(new Button.OnTouchListener(){
+				public boolean onTouch(View v, MotionEvent event) {
+					int ea=event.getAction();  
+		             Log.i("TAG", "Touch:"+ea);   
+		             boolean df=func(ea,event,v,screenWidth,screenHeight,mBtn,bBtn[9],0);
+		             return df;  
+				}
+			});*/
 	}
 	
-	public void monebtn(View v){
+	/*public void monebtn(View v){
+		v.setClickable(true);
 		toBtnpage(mNum[0]);
 	}
 	public void mtwobtn(View v){
+		v.setClickable(true);
 		toBtnpage(mNum[1]);
 	}
 	public void mthreebtn(View v){
+		v.setClickable(true);
 		toBtnpage(mNum[2]);
 	}
 	public void mfourbtn(View v){
+		v.setClickable(true);
 		toBtnpage(mNum[3]);
 	}
 	public void mfivebtn(View v){
+		v.setClickable(true);
 		toBtnpage(mNum[4]);
+	}*/
+	public void bfouladd(View v){
+		oppfl++;
+		getbfoul(oppfl);
+	}
+	public void afouladd(View v){
+		selffl++;
+		getafoul(selffl);
+	}
+	public void endquater(View v){
+		oppfl=0;
+		selffl=0;
+		getafoul(selffl);
+		getbfoul(oppfl);
+	}
+	public void showwepts(int pt){
+		TextView ourscore = (TextView)findViewById(R.id.ourscore);
+		ourscore.setText(Integer.toString(pt));
+	}
+	public void getbfoul(int fl){
+		TextView[] bfoullight = new TextView[5];
+		if(fl<=5&&fl>0){
+		for(int i=0;i<fl;i++){
+			int id = getResources().getIdentifier("bfoullight"+(i+1), "id", getPackageName());
+			bfoullight[i] = (TextView)findViewById(id);
+			bfoullight[i].setBackgroundColor(Color.RED);
+		}
+		}
+		else if(fl==0){
+			for(int i=0;i<5;i++){
+				int id = getResources().getIdentifier("bfoullight"+(i+1), "id", getPackageName());
+				bfoullight[i] = (TextView)findViewById(id);
+				bfoullight[i].setBackgroundColor(Color.BLACK);
+			}
+		}
+		else{
+			Toast.makeText(Recording.this,"デ砏笷秈籃" , Toast.LENGTH_LONG);
+			
+		}
+	}
+	public void getafoul(int fl){
+		TextView[] afoullight = new TextView[5];
+		if(fl<=5&&fl>0){
+		for(int i=0;i<fl;i++){
+			int id = getResources().getIdentifier("afoullight"+(i+1),"id",getPackageName());
+			afoullight[i] = (TextView)findViewById(id);
+			afoullight[i].setBackgroundColor(Color.RED);
+		}
+		}
+		else if(fl==0){
+			for(int i=0;i<5;i++){
+				int id = getResources().getIdentifier("afoullight"+(i+1),"id",getPackageName());
+				afoullight[i] = (TextView)findViewById(id);
+				afoullight[i].setBackgroundColor(Color.BLACK);
+			}
+		}
+		else{
+			Toast.makeText(Recording.this,"デ砏笷秈籃" , Toast.LENGTH_LONG);
+		}
+	}
+	public void optsadd(View v){
+		opppts++;
+		showopts(opppts);
+	}
+	public void optsmin(View v){
+		if(opppts>0){
+		opppts--;
+		}
+		showopts(opppts);
+	}
+	public void showopts(int pt){
+		TextView opp = (TextView)findViewById(R.id.oppscore);
+		opp.setText(Integer.toString(pt));
 	}
 	public void toBtnpage(String number){
 		Bundle table = this.getIntent().getExtras();
@@ -101,18 +410,59 @@ public class Recording extends Activity {
 		Bundle getData = new Bundle();
 		getData.putString("number", number);
 		getData.putString("table", table.getString("table"));
+		getData.putStringArray("num", fullNum);
+		getData.putInt("ourpts", ourpts);
+		//getData.putInt("sfls", selffl);
+		//getData.putInt("ofls", oppfl);
+		//getData.putStringArray("mNum", mNum);
+		//getData.putStringArray("bNum", bNum);
 		btnpg.putExtras(getData);
 		btnpg.setClass(Recording.this, GameRecord.class);
 		startActivity(btnpg);
 		
 	}
-	@Override
-	public void onBackPressed(){
-		
+	public void getNum(Button bu,Button[] bBtn,final String[] fnum){
+		String ss = bu.getText().toString();
+		String stop = "";
+		for(int i =0;i<15;i++){
+			if(fullNum[i]==str.toString()){
+				bu.setText(str.toString());
+				int y=0;
+				while(fullNum[y]!=ss&&y<15){
+					y++;
+				}
+				if(y<15){
+					stop = fullNum[y];
+					fullNum[y]=fullNum[i];
+					fullNum[i]=stop;
+				}
+				bBtn[i-5].setText(stop);
+				bNum[i-5]=bBtn[i-5].getText().toString();
+				fnum[i-5]=bNum[i-5];
+			}
+		}
 	}
-	public boolean func(int ea,MotionEvent event,View v,int screenWidth,int screenHeight,Button btn[],Button bu){
-    	int startX;
-    	int startY;
+
+	/*public AlertDialog getMutiItemDialog( final String[] items) {
+		
+	}*/
+	public void show(Button[] mBtn,Button[] bBtn,final String[] fnum){
+		for(int i=0;i<5;i++){
+			int getmName = getResources().getIdentifier("mainplayer"+(i+1), "id", getPackageName());
+			mBtn[i] = (Button)findViewById(getmName);
+			mBtn[i].setText(mNum[i]);
+		}
+		for(int j=0;j<10;j++){
+			int getbName = getResources().getIdentifier("benchplayer"+(j+1), "id", getPackageName());
+			bBtn[j] = (Button)findViewById(getbName);
+				bBtn[j].setText(bNum[j]);
+				fnum[j]=bNum[j];
+		}
+	}
+
+
+	public boolean func(int ea,MotionEvent event,View v,int screenWidth,int screenHeight,Button btn[],Button bu,int flag){
+    	
    	 switch(ea){  
         case MotionEvent.ACTION_DOWN:             
          startX = (int)event.getRawX();
@@ -163,47 +513,56 @@ public class Recording extends Activity {
          v.postInvalidate();             
          break;  
         case MotionEvent.ACTION_UP:
-       	 	lastX=(int)event.getRawX();  
+        	endX=(int)event.getRawX();
+        	endY = (int)event.getRawY();
+        	lastX=(int)event.getRawX();  
             lastY=(int)event.getRawY();
-            int midX,midY;
-            midX=(int)bu.getLeft()+(bu.getWidth())/2;
-            midY=(int)bu.getTop()+(bu.getHeight())/2;
-            if(btn[0]==mBtn[0]){
-            	for(int h=0;h<5;h++){
-                  	 tmpX[h] = (int)btn[h].getLeft();
-                  	 tmpY[h] = (int)btn[h].getTop();
-                  	 tmpX2[h] = (int)tmpX[h]+btn[h].getMeasuredWidth();
-                  	 tmpY2[h] = (int)tmpY[h]+btn[h].getMeasuredHeight();
-                   }
-            	for(int g =0;g<5;g++){
-            		if(tmpX[g]<=midX && tmpY[g]<=midY){
-            			if(midX<=tmpX2[g] && midY<=tmpY2[g]){
-            			String str = btn[g].getText().toString();
-               	 		btn[g].setText(bu.getText( ).toString());
-               	 		bu.setText(str);
-            			}
-            			
-            		}		
-            	}
-            }
-            if(btn[0]==bBtn[0]){
-            	for(int h=0;h<10;h++){
-                 	 tmpX[h] = (int)btn[h].getLeft();
-                 	 tmpY[h] = (int)btn[h].getTop();
-                 	 tmpX2[h] = (int)tmpX[h]+btn[h].getMeasuredWidth();
-                 	 tmpY2[h] = (int)tmpY[h]+btn[h].getMeasuredHeight();
-                  }
-            	for(int g =0;g<10;g++){
-            		if(tmpX[g]<=midX && tmpY[g]<=midY){
-            			if(midX<=tmpX2[g] && midY<=tmpY2[g]){
-            			String str = btn[g].getText().toString();
-               	 		btn[g].setText(bu.getText( ).toString());
-               	 		bu.setText(str);
-            			}
-            			
-            		}
-            	}
-            }    
+        	if(startX == endX&&startY==endY){
+        		toBtnpage(bu.getText().toString());
+        	}
+        	else{
+	            int midX,midY;
+	            midX=(int)bu.getLeft()+(bu.getWidth())/2;
+	            midY=(int)bu.getTop()+(bu.getHeight())/2;
+	            int dd=0;
+	            if(flag!=1){
+	            	for(int h=0;h<5;h++){
+	                  	 tmpX[h] = (int)btn[h].getLeft();
+	                  	 tmpY[h] = (int)btn[h].getTop();
+	                  	 tmpX2[h] = (int)tmpX[h]+btn[h].getMeasuredWidth();
+	                  	 tmpY2[h] = (int)tmpY[h]+btn[h].getMeasuredHeight();
+	                   }
+	            	for(int g =0;g<5;g++){
+	            		if(tmpX[g]<=midX && tmpY[g]<=midY){
+	            			if(midX<=tmpX2[g] && midY<=tmpY2[g]){
+	            			String str = btn[g].getText().toString();
+	               	 		btn[g].setText(bu.getText( ).toString());
+	               	 		bu.setText(str);
+	            			}
+	            			
+	            		}		
+	            	}
+	            	flag=0;
+	            }
+	            else{
+	            	for(int h=0;h<10;h++){
+	                 	 tbX[h] = (int)btn[h].getLeft();
+	                 	 tbY[h] = (int)btn[h].getTop();
+	                 	 tbX2[h] = (int)tmpX[h]+btn[h].getMeasuredWidth();
+	                 	 tbY2[h] = (int)tmpY[h]+btn[h].getMeasuredHeight();
+	                  }
+	            	for(int g =0;g<10;g++){
+	            		if(tbX[g]<=midX && tbY[g]<=midY){
+	            			if(midX<=tbX2[g] && midY<=tbY2[g]){
+	            			String str = btn[g].getText().toString();
+	               	 		btn[g].setText(bu.getText( ).toString());
+	               	 		bu.setText(str);
+	            			}
+	            			
+	            		}
+	            	}
+	            }
+        	}
          break;            
         }
    	 return false;

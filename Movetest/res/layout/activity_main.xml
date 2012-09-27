@@ -36,7 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_x="48dp"
         android:layout_y="282dp"
-        android:text="Button3" />
+        android:text="Button3" 
+        />
 
     <Button
         android:id="@+id/button4"
@@ -44,7 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_x="202dp"
         android:layout_y="237dp"
-        android:text="Button4" />
+        android:text="Button4"
+         />
 
     <Button
         android:id="@+id/button5"
@@ -52,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_x="192dp"
         android:layout_y="307dp"
-        android:text="Button5" />
+        android:text="Button5"
+         />
 
 </AbsoluteLayout>

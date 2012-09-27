@@ -35,6 +35,8 @@ public class OldData extends ListActivity {
 	private ListView listView;
 	private  SimpleAdapter listItemAdapter; 
 	private Toast toast;
+	int i=0;
+	String[] name = {"","","","","","","","","",""};
 	@Override
     public  void  onCreate(Bundle icicle) {
         super .onCreate(icicle);
@@ -53,11 +55,12 @@ public class OldData extends ListActivity {
 	        	c.moveToNext();
 				while (!c.isAfterLast()) {
 					String str = c.getString(0);
-					Cursor cu = DB.query(str, new String [] {"recordname","day","month"}, null, null, null, null, null);
+					//name[i]=str;
+					Cursor cu = DB.query(str, new String [] {"oppname","day","month"}, null, null, null, null, null);
 					cu.moveToFirst();
-					//cu.moveToNext();
+					cu.moveToNext();
 					//Log.d("OLDdataRecordname=", Integer.toString(indexRecordname));
-					String ing = cu.getString(cu.getColumnIndexOrThrow("recordname"));
+					String ing = cu.getString(cu.getColumnIndexOrThrow("oppname"));
 					String Month = Integer.toString(cu.getInt(cu.getColumnIndexOrThrow("month")));
 					String Day = Integer.toString(cu.getInt(cu.getColumnIndexOrThrow("day")));
 					HashMap<String, String> map = new  HashMap<String, String>();   
@@ -65,6 +68,7 @@ public class OldData extends ListActivity {
 		            map.put( "txt2" , ing);    //¹Ï¤ù   
 		            listItems.add(map);
 		            //cu.close();
+		            i++;
 					c.moveToNext();
 				}
 				c.close();
@@ -83,7 +87,7 @@ public class OldData extends ListActivity {
 		 //toast.makeText(getApplicationContext(), ((TextView)v.findViewById(R.id.txt1)).getText().toString(), Toast.LENGTH_SHORT).show();
 		 Intent InData = new Intent();
 		 InData.setClass(OldData.this, Indata.class);
-		 String tablename = ((TextView)v.findViewById(R.id.txt2)).getText().toString()+del(((TextView)v.findViewById(R.id.txt1)).getText().toString());
+		 String tablename = ((TextView)v.findViewById(R.id.txt2)).getText().toString()+"2012"+del(((TextView)v.findViewById(R.id.txt1)).getText().toString());
 		 String tableName = ((TextView)v.findViewById(R.id.txt2)).getText().toString()+((TextView)v.findViewById(R.id.txt1)).getText().toString();
 		 Bundle bundle = new Bundle();
 		 bundle.putString("Tablename",tablename);

@@ -34,6 +34,7 @@ public class SQLite extends SQLiteOpenHelper {
 	public static final String SELFPTS = "selfpts";
 	public static final String OPPPTS = "opppts";
 	public static final String YEAR = "year";
+	public static final String OPPNAME = "oppname";
 	public SQLite(Context context, String name, CursorFactory factory,int version) {
 		super(context,name,factory,version);
 		this.getWritableDatabase();
@@ -53,7 +54,7 @@ public class SQLite extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + TB_NAME);
 		onCreate(db);
 	}
-	public void addplayer(String name,String number,String tableName,String recordname,int month,int day,int year){
+	public void addplayer(String name,String number,String tableName,String recordname,int month,int day,int year,String oppname){
 		ContentValues values = new ContentValues();
 		values.put(SQLite.NAME, name);
 		values.put(SQLite.NUMBER, number);
@@ -76,6 +77,7 @@ public class SQLite extends SQLiteOpenHelper {
 		values.put(SQLite.SELFPTS, 0);
 		values.put(SQLite.OPPPTS, 0);
 		values.put(SQLite.YEAR, year);
+		values.put(SQLite.OPPNAME, oppname);
 		this.getWritableDatabase().insert(tableName,null, values);
 		this.getWritableDatabase().close();
 	}
@@ -85,6 +87,7 @@ public class SQLite extends SQLiteOpenHelper {
 				+ NAME + " TEXT NOT NULL, "
 				+ NUMBER + " TEXT NOT NULL, "
 				+ RECORDNAME + " TEXT NOT NULL, "
+				+ OPPNAME + " TEXT NOT NULL, "
 				+ PTS + " INTEGER, "
 				+ RBS + " INTEGER, "
 				+ ASTS + " INTEGER, "

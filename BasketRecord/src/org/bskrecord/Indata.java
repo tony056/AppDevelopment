@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.gesture.GestureLibraries;
@@ -170,5 +171,12 @@ public class Indata extends ListActivity{
 			Toast.makeText(getBaseContext(), e.getMessage(),
 					Toast.LENGTH_LONG).show();
 		}  
+	}
+	@Override
+	public void onBackPressed(){ 
+		Intent backOld = new Intent();
+		backOld.setClass(Indata.this, OldData.class);
+		startActivity(backOld);
+		Indata.this.finish();
 	}
 }
