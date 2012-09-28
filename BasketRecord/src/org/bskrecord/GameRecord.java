@@ -34,6 +34,7 @@ public class GameRecord extends Activity{
 	String num = "";
 	String[] Num = new String[16];
 	int teampts = 0,opppts=0;
+	int prestep = 0;
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -240,7 +241,8 @@ public class GameRecord extends Activity{
 		data.update(table, values, "number = "+num, null);
 		Show(twoap,twomd,two,"¨â¤À²y");
 		showscore(pts,pscore);
-		goBack();
+		prestep =1;
+		//goBack();
 	}
 	public void bfuncTwopOut(View v,int flag){
 		TextView two = (TextView)findViewById(R.id.Twop);
@@ -258,7 +260,8 @@ public class GameRecord extends Activity{
 		ContentValues values = new ContentValues();
 		values.put(SQLite.TWOAP, twoap);
 		data.update(table, values, "number = "+num, null);
-		goBack();
+		//goBack();
+		prestep=2;
 	}
 	public void bfuncThreepIn(View v,int flag){
 		TextView three = (TextView)findViewById(R.id.Threep);
@@ -290,7 +293,8 @@ public class GameRecord extends Activity{
 		ContentValues teamV = new ContentValues();
 		teamV.put(SQLite.SELFPTS, selfpt);
 		data2.update(table, teamV, null, null);
-		goBack();
+		//goBack();
+		prestep=3;
 	}
 	public void bfuncThreepOut(View v,int flag){
 		TextView three = (TextView)findViewById(R.id.Threep);
@@ -307,7 +311,8 @@ public class GameRecord extends Activity{
 		ContentValues values = new ContentValues();
 		values.put(SQLite.THREEAP, threeap);
 		data.update(table, values, "number = "+num, null);
-		goBack();
+		//goBack();
+		prestep=4;
 	}
 	public void bfuncFreethrowIn(View v,int flag){
 		TextView free = (TextView)findViewById(R.id.Freethrow);
@@ -339,7 +344,8 @@ public class GameRecord extends Activity{
 		ContentValues teamV = new ContentValues();
 		teamV.put(SQLite.SELFPTS, selfpt);
 		data2.update(table, teamV, null, null);
-		goBack();
+		//goBack();
+		prestep=5;
 	}
 	public void bfuncFreethrowOut(View v,int flag){
 		TextView free = (TextView)findViewById(R.id.Freethrow);
@@ -359,7 +365,8 @@ public class GameRecord extends Activity{
 		ContentValues values = new ContentValues();
 		values.put(SQLite.FREEAP, freeap);
 		data.update(table, values, "number = "+num, null);
-		goBack();
+		//goBack();
+		prestep=6;
 	}
 	public void bfuncReb(View v,int flag){
 		Button rebs = (Button)findViewById(R.id.btnReb);
@@ -375,7 +382,8 @@ public class GameRecord extends Activity{
 		ContentValues values = new ContentValues();
 		values.put(SQLite.RBS, rbs);
 		data.update(table, values, "number = "+num, null);
-		goBack();
+		//goBack();
+		prestep=7;
 	}
 	public void bfuncAst(View v,int flag){
 		Button ast = (Button)findViewById(R.id.btnAst);
@@ -390,7 +398,8 @@ public class GameRecord extends Activity{
 		ContentValues values = new ContentValues();
 		values.put(SQLite.ASTS, asts);
 		data.update(table, values, "number = "+num, null);
-		goBack();
+		//goBack();
+		prestep=8;
 	}
 	public void bfuncStl(View v,int flag){
 		Button stl = (Button)findViewById(R.id.btnStl);
@@ -405,7 +414,8 @@ public class GameRecord extends Activity{
 		ContentValues values = new ContentValues();
 		values.put(SQLite.STLS, stls);
 		data.update(table, values, "number = "+num, null);
-		goBack();
+		//goBack();
+		prestep=9;
 	}
 	public void bfuncBlk(View v,int flag){
 		Button blk = (Button)findViewById(R.id.btnBlk);
@@ -420,7 +430,8 @@ public class GameRecord extends Activity{
 		ContentValues values = new ContentValues();
 		values.put(SQLite.BLKS, blks);
 		data.update(table, values,"number = "+num, null);
-		goBack();
+		//goBack();
+		prestep=10;
 	}
 	public void bfuncTo(View v,int flag){
 		Button to = (Button)findViewById(R.id.btnTo);
@@ -435,7 +446,8 @@ public class GameRecord extends Activity{
 		ContentValues values = new ContentValues();
 		values.put(SQLite.TOS, tos);
 		data.update(table, values, "number = "+num, null);
-		goBack();
+		//goBack();
+		prestep=11;
 	}
 	public void bfuncFoul(View v,int flag){
 		Button fl = (Button)findViewById(R.id.btnFoul);
@@ -461,24 +473,54 @@ public class GameRecord extends Activity{
 		ContentValues values = new ContentValues();
 		values.put(SQLite.FLS, fls);
 		data.update(table, values, "number = "+num, null);
-		Bundle tableback = new Bundle();
-		tableback.putString("table", table);
-		//tableback.putInt("fls", fls);
-		tableback.putStringArray("num", Num);
-		//tableback.putInt("sfls", sfls);
-		//tableback.putInt("ofls", oppfls);
-		Intent back = new Intent();
-		back.putExtras(tableback);
-		back.setClass(GameRecord.this, Recording.class);
-		startActivity(back);
-		GameRecord.this.finish();
-		data.close();
-		data2.close();
-		player.close();
-		team.close();
+		//goBack();
+		prestep=12;
 	}
-	public void bfuncDelete(){
-		
+	public void bfuncDelete(View v){
+		switch(prestep){
+		case 1:
+			bfuncTwopIn(bu,flag);
+			
+			break;
+		case 2:
+			bfuncTwopOut(bu,flag);
+			
+			break;
+		case 3:
+			bfuncThreepIn(bu,flag);
+			
+			break;
+		case 4:
+			bfuncThreepOut(bu,flag);
+			
+			break;
+		case 5:
+			bfuncFreethrowIn(bu,flag);
+			
+			break;
+		case 6:
+			bfuncFreethrowOut(bu,flag);
+			
+			break;
+		case 7:
+			bfuncReb(bu,flag);
+			break;
+		case 8:
+			bfuncAst(bu,flag);
+			break;
+		case 9:
+			bfuncStl(bu,flag);
+			break;
+		case 10:
+			bfuncBlk(bu,flag);
+			break;
+		case 11:
+			bfuncTo(bu,flag);
+			break;
+		case 12:
+			bfuncFoul(bu,flag);
+			break;
+		}
 	}
 	public void goBack(){
 		Bundle tableback = new Bundle();
@@ -668,5 +710,9 @@ public class GameRecord extends Activity{
 	}
 	public void showscore(int pt,TextView view){
 		view.setText(Integer.toString(pt));
+	}
+	@Override
+	public void onBackPressed(){
+		goBack();
 	}
 }

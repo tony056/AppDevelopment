@@ -51,8 +51,18 @@ public class OldData extends ListActivity {
 	        SQLiteDatabase DB = data.getWritableDatabase();
 	        Cursor c = DB.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
 	        
+	        if(c.moveToFirst()==false){
+        		Toast.makeText(OldData.this, "no old data", Toast.LENGTH_LONG);
+        		Intent it = new Intent();
+       		 	it.setClass(OldData.this, BasketRecordActivity.class);
+       		 	startActivity(it);
+       		 	OldData.this.finish();
+        	}
+	        
 	        if(c.moveToFirst()){
+	        	
 	        	c.moveToNext();
+	        	
 				while (!c.isAfterLast()) {
 					String str = c.getString(0);
 					//name[i]=str;
@@ -88,7 +98,7 @@ public class OldData extends ListActivity {
 		 Intent InData = new Intent();
 		 InData.setClass(OldData.this, Indata.class);
 		 String tablename = ((TextView)v.findViewById(R.id.txt2)).getText().toString()+"2012"+del(((TextView)v.findViewById(R.id.txt1)).getText().toString());
-		 String tableName = ((TextView)v.findViewById(R.id.txt2)).getText().toString()+((TextView)v.findViewById(R.id.txt1)).getText().toString();
+		 //String tableName = ((TextView)v.findViewById(R.id.txt2)).getText().toString()+((TextView)v.findViewById(R.id.txt1)).getText().toString();
 		 Bundle bundle = new Bundle();
 		 bundle.putString("Tablename",tablename);
 		 

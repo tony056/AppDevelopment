@@ -13,14 +13,15 @@ public final class R {
     public static final class drawable {
         public static final int blackbl=0x7f020000;
         public static final int bluebl=0x7f020001;
-        public static final int green=0x7f020002;
-        public static final int greengr=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int newnew=0x7f020005;
-        public static final int orangeor=0x7f020006;
-        public static final int redrre=0x7f020007;
-        public static final int trash=0x7f020008;
-        public static final int txt=0x7f020009;
+        public static final int court=0x7f020002;
+        public static final int green=0x7f020003;
+        public static final int greengr=0x7f020004;
+        public static final int ic_launcher=0x7f020005;
+        public static final int newnew=0x7f020006;
+        public static final int orangeor=0x7f020007;
+        public static final int redrre=0x7f020008;
+        public static final int trash=0x7f020009;
+        public static final int txt=0x7f02000a;
     }
     public static final class id {
         public static final int Freethrow=0x7f07001e;
@@ -28,9 +29,11 @@ public final class R {
         public static final int LinearLayout1=0x7f070085;
         public static final int LinearLayout2=0x7f070032;
         public static final int LinearLayout3=0x7f070087;
+        public static final int RelativeLayout1=0x7f07004f;
         public static final int TableLayout1=0x7f070020;
         public static final int TableLayout2=0x7f070027;
         public static final int TableRow1=0x7f070039;
+        public static final int TextView1=0x7f070050;
         public static final int Threep=0x7f07001b;
         public static final int Twop=0x7f07001d;
         public static final int aFouladd=0x7f070053;
@@ -77,7 +80,6 @@ public final class R {
         public static final int clothescolors=0x7f070000;
         public static final int date=0x7f070033;
         public static final int detail=0x7f070089;
-        public static final int gesture=0x7f070051;
         public static final int green=0x7f070009;
         public static final int greenb=0x7f070005;
         public static final int infoset=0x7f070036;
@@ -99,14 +101,13 @@ public final class R {
         public static final int name3=0x7f070079;
         public static final int name4=0x7f07007c;
         public static final int name5=0x7f07007f;
-        public static final int newrecord=0x7f07004f;
+        public static final int newrecord=0x7f070051;
         public static final int next=0x7f070001;
         public static final int number1=0x7f070074;
         public static final int number2=0x7f070077;
         public static final int number3=0x7f07007a;
         public static final int number4=0x7f07007d;
         public static final int number5=0x7f070080;
-        public static final int old=0x7f070050;
         public static final int oppname=0x7f070034;
         public static final int oppscore=0x7f07005b;
         public static final int orange=0x7f07000b;

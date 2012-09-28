@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/court"
     android:orientation="vertical" >
 
     <TextView
+        android:id="@+id/TextView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:text="@string/hello" />
 
     <Button
         android:id="@+id/newrecord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:width="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="94dp"
         android:height="100dp"
-        android:text="@string/New" 
-        android:onClick="getNew"/>
+        android:onClick="getNew"
+        android:text="@string/New"
+        android:width="100dp" />
 
-    <Button
-        android:id="@+id/old"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/old"
-        android:onClick="toOld" />
-    <android.gesture.GestureOverlayView android:id="@+id/gesture"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" />
-</LinearLayout>
+</RelativeLayout>
