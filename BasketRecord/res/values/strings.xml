@@ -16,4 +16,6 @@
 	<string name="printnumber">Number: </string>
 	<string name="insert">Insert</string>
 	<string name="finishInsert">finish insert!!</string>
+	<string name="buttonname1">Player Name</string>
+    <string name="buttonname2">沿用</string>
 </resources>

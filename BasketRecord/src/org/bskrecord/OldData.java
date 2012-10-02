@@ -37,6 +37,7 @@ public class OldData extends ListActivity {
 	private Toast toast;
 	int i=0;
 	String[] name = {"","","","","","","","","",""};
+	String num="";
 	@Override
     public  void  onCreate(Bundle icicle) {
         super .onCreate(icicle);
@@ -58,7 +59,11 @@ public class OldData extends ListActivity {
        		 	startActivity(it);
        		 	OldData.this.finish();
         	}
-	        
+	        HashMap<String ,String> title = new HashMap<String, String>();
+	        title.put("txt1", "日期");
+	        title.put("txt2", "對手");
+	        title.put("txt3", "對手 : 自己");
+	        listItems.add(title);
 	        if(c.moveToFirst()){
 	        	
 	        	c.moveToNext();
@@ -66,16 +71,21 @@ public class OldData extends ListActivity {
 				while (!c.isAfterLast()) {
 					String str = c.getString(0);
 					//name[i]=str;
-					Cursor cu = DB.query(str, new String [] {"oppname","day","month"}, null, null, null, null, null);
+					Cursor cu = DB.query(str, new String [] {"oppname","day","month","year","opppts","selfpts"}, null, null, null, null, null);
 					cu.moveToFirst();
 					cu.moveToNext();
 					//Log.d("OLDdataRecordname=", Integer.toString(indexRecordname));
 					String ing = cu.getString(cu.getColumnIndexOrThrow("oppname"));
 					String Month = Integer.toString(cu.getInt(cu.getColumnIndexOrThrow("month")));
 					String Day = Integer.toString(cu.getInt(cu.getColumnIndexOrThrow("day")));
-					HashMap<String, String> map = new  HashMap<String, String>();   
-		            map.put( "txt1" ,"2012/"+ Month+"/"+Day);     //文字
-		            map.put( "txt2" , ing);    //圖片   
+					String Year = Integer.toString(cu.getInt(cu.getColumnIndexOrThrow("year")));
+					String opppts = Integer.toString(cu.getInt(cu.getColumnIndexOrThrow("opppts")));
+					String selfpts = Integer.toString(cu.getInt(cu.getColumnIndexOrThrow("selfpts")));
+					HashMap<String, String> map = new  HashMap<String, String>();  
+					num=Year+Month+Day;
+		            map.put( "txt1" ,Year+"/"+ Month+"/"+Day);     //文字
+		            map.put( "txt2" , ing);
+		            map.put("txt3", opppts+":"+selfpts);//圖片   
 		            listItems.add(map);
 		            //cu.close();
 		            i++;
@@ -88,8 +98,8 @@ public class OldData extends ListActivity {
 	            	        //生成適配器的Item和動態數組對應的元素   
 	        listItemAdapter = new  SimpleAdapter( this ,listItems,    // listItems數據源    
 	                R.layout.listitem,   //ListItem的XML佈局實現  
-	                new  String[] { "txt1" , "txt2" },      //動態數組與ImageItem對應的子項         
-	                new  int [ ] {R.id.txt1, R.id.txt2}       //list_item.xml佈局文件裡面的一個ImageView的ID,一個TextView的ID  
+	                new  String[] { "txt1" , "txt2","txt3" },      //動態數組與ImageItem對應的子項         
+	                new  int [ ] {R.id.txt1, R.id.txt2,R.id.txt4}       //list_item.xml佈局文件裡面的一個ImageView的ID,一個TextView的ID  
 	        );   
 	}
 	 protected void onListItemClick(ListView l , View v, int position , long id){
@@ -97,7 +107,7 @@ public class OldData extends ListActivity {
 		 //toast.makeText(getApplicationContext(), ((TextView)v.findViewById(R.id.txt1)).getText().toString(), Toast.LENGTH_SHORT).show();
 		 Intent InData = new Intent();
 		 InData.setClass(OldData.this, Indata.class);
-		 String tablename = ((TextView)v.findViewById(R.id.txt2)).getText().toString()+"2012"+del(((TextView)v.findViewById(R.id.txt1)).getText().toString());
+		 String tablename = ((TextView)v.findViewById(R.id.txt2)).getText().toString()+num;
 		 //String tableName = ((TextView)v.findViewById(R.id.txt2)).getText().toString()+((TextView)v.findViewById(R.id.txt1)).getText().toString();
 		 Bundle bundle = new Bundle();
 		 bundle.putString("Tablename",tablename);

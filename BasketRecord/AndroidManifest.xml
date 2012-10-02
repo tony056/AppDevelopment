@@ -38,6 +38,10 @@
                 android:screenOrientation="landscape"></activity>
             <activity android:name="GameRecord"
                 android:screenOrientation="landscape"></activity>
+            <activity android:name="Mainmenu"
+                android:screenOrientation="landscape"></activity>
+            <activity android:name="Jersey"
+                android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

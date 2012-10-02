@@ -3,6 +3,7 @@ package org.bskrecord;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -37,7 +38,9 @@ public class Recording extends Activity {
 	int point = 0;
 	int selffl = 0,oppfl = 0;
 	int opppts = 0,ourpts=0;
+	int step=0;
 	String str = "";
+	String table = "";
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -46,7 +49,7 @@ public class Recording extends Activity {
 		final Button[] bBtn = new Button[11];
 		final String[] fnum = {"","","","","","","","","","",""};
 		Bundle getname = this.getIntent().getExtras();
-		String table = getname.getString("table");
+		table = getname.getString("table");
 		fullNum = getname.getStringArray("num");
 		selffl = getname.getInt("sfls");
 		oppfl = getname.getInt("ofls");
@@ -70,12 +73,12 @@ public class Recording extends Activity {
 			//c.moveToNext();
 		}
 		for(int j=0;j<10;j++){
-			int getbName = getResources().getIdentifier("benchplayer"+(j+1), "id", getPackageName());
-			bBtn[j] = (Button)findViewById(getbName);
+			/*int getbName = getResources().getIdentifier("benchplayer"+(j+1), "id", getPackageName());
+			bBtn[j] = (Button)findViewById(getbName);*/
 			//if(!c.isAfterLast()){
 				
 				bNum[j] = fullNum[j+5];
-				bBtn[j].setText(bNum[j]);
+				//bBtn[j].setText(bNum[j]);
 				fnum[j]=bNum[j];
 				//c.moveToNext();
 			//}
@@ -332,12 +335,61 @@ public class Recording extends Activity {
 		v.setClickable(true);
 		toBtnpage(mNum[4]);
 	}*/
+	public void undo(View v){
+		if(step==1){
+			opppts--;
+			step=0;
+			showopts(opppts);
+		}
+		else if(step==2){
+			opppts-=2;
+			step=0;
+			showopts(opppts);
+		}
+		else if(step==3){
+			opppts-=3;
+			step=0;
+			showopts(opppts);
+		}
+		else if(step==4){
+			selffl--;
+			step=0;
+			getafoul(selffl);
+		}
+		else if(step==5){
+			oppfl--;
+			step=0;
+			getbfoul(oppfl);
+		}
+	}
+	public void Gameover(View v){
+		SQLite qq = new SQLite(Recording.this,"data",null,1);
+        SQLiteDatabase ha = qq.getWritableDatabase();
+        String[] column = {"selfpts","opppts"};
+        Cursor c = ha.query(table, column, null, null, null, null, null);
+        int oppIndex = c.getColumnIndexOrThrow("opppts");
+        int selfIndex = c.getColumnIndexOrThrow("selfpts");
+        ContentValues dd = new ContentValues();
+        dd.put(SQLite.OPPPTS, opppts);
+        dd.put(SQLite.SELFPTS, ourpts);
+        ha.update(table, dd, null, null);
+        ha.close();
+        Intent toIndata = new Intent();
+        Bundle tname = new Bundle();
+        tname.putString("Tablename", table);
+        toIndata.putExtras(tname);
+        toIndata.setClass(Recording.this, Indata.class);
+        Recording.this.finish();
+        //c.moveToFirst();
+	}
 	public void bfouladd(View v){
 		oppfl++;
+		step=5;
 		getbfoul(oppfl);
 	}
 	public void afouladd(View v){
 		selffl++;
+		step=4;
 		getafoul(selffl);
 	}
 	public void endquater(View v){
@@ -357,6 +409,11 @@ public class Recording extends Activity {
 			int id = getResources().getIdentifier("bfoullight"+(i+1), "id", getPackageName());
 			bfoullight[i] = (TextView)findViewById(id);
 			bfoullight[i].setBackgroundColor(Color.RED);
+		}
+		for(int j=fl;j<5;j++){
+			int id = getResources().getIdentifier("bfoullight"+(j+1), "id", getPackageName());
+			bfoullight[j] = (TextView)findViewById(id);
+			bfoullight[j].setBackgroundColor(Color.BLACK);
 		}
 		}
 		else if(fl==0){
@@ -379,6 +436,11 @@ public class Recording extends Activity {
 			afoullight[i] = (TextView)findViewById(id);
 			afoullight[i].setBackgroundColor(Color.RED);
 		}
+		for(int j=fl;j<5;j++){
+			int id = getResources().getIdentifier("afoullight"+(j+1),"id",getPackageName());
+			afoullight[j] = (TextView)findViewById(id);
+			afoullight[j].setBackgroundColor(Color.BLACK);
+		}
 		}
 		else if(fl==0){
 			for(int i=0;i<5;i++){
@@ -393,12 +455,19 @@ public class Recording extends Activity {
 	}
 	public void optsadd(View v){
 		opppts++;
+		step=1;
 		showopts(opppts);
 	}
-	public void optsmin(View v){
+	public void addtw(View v){
 		if(opppts>0){
-		opppts--;
+		opppts+=2;
+		step=2;
 		}
+		showopts(opppts);
+	}
+	public void addthr(View v){
+		opppts+=3;
+		step=3;
 		showopts(opppts);
 	}
 	public void showopts(int pt){
@@ -438,8 +507,8 @@ public class Recording extends Activity {
 					fullNum[y]=fullNum[i];
 					fullNum[i]=stop;
 				}
-				bBtn[i-5].setText(stop);
-				bNum[i-5]=bBtn[i-5].getText().toString();
+				//bBtn[i-5].setText(stop);
+				bNum[i-5]=stop;
 				fnum[i-5]=bNum[i-5];
 			}
 		}
@@ -454,12 +523,12 @@ public class Recording extends Activity {
 			mBtn[i] = (Button)findViewById(getmName);
 			mBtn[i].setText(mNum[i]);
 		}
-		for(int j=0;j<10;j++){
+		/*for(int j=0;j<10;j++){
 			int getbName = getResources().getIdentifier("benchplayer"+(j+1), "id", getPackageName());
 			bBtn[j] = (Button)findViewById(getbName);
 				bBtn[j].setText(bNum[j]);
 				fnum[j]=bNum[j];
-		}
+		}*/
 	}
 
 

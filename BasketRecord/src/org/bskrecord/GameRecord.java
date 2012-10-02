@@ -118,7 +118,7 @@ public class GameRecord extends Activity{
 		Show2(fls,fl,"犯規");
 		pts = player.getInt(ptsIndex);
 		showscore(pts,pscore);
-		twoin.setOnTouchListener(new Button.OnTouchListener(){
+		/*twoin.setOnTouchListener(new Button.OnTouchListener(){
 			public boolean onTouch(View v,MotionEvent event){
 				int ea = event.getAction();
 				boolean df = func(ea,event,v,screenWidth,screenHeight,del,twoin,0);
@@ -201,7 +201,7 @@ public class GameRecord extends Activity{
 				boolean df= func(ea,event,v,screenWidth,screenHeight,del,fl,0);
 				return df;
 			}
-		});
+		});*/
 		
 		/*Button twoout = (Button)findViewById(R.id.btnTwopOut);
 		Button threein = (Button)findViewById(R.id.btnThreepIn);
@@ -211,7 +211,43 @@ public class GameRecord extends Activity{
 		Button reb = (Button)findViewById(R.id.btnReb);*/
 		
 	}
-	public void bfuncTwopIn(View v,int flag){
+	public void bfuncTwopIn(View v){
+		bfuncTwopInin(1);
+	}
+	public void bfuncTwopOut(View v){
+		bfuncTwopOutin(1);
+	}
+	public void bfuncThreepIn(View v){
+		bfuncThreepInin(1);
+	}
+	public void bfuncThreepOut(View v){
+		bfuncThreepOutin(1);
+	}
+	public void bfuncFreethrowIn(View v){
+		bfuncFreethrowInin(1);
+	}
+	public void bfuncFreethrowOut(View v){
+		bfuncFreethrowOutin(1);
+	}
+	public void bfuncReb(View v){
+		bfuncRebin(1);
+	}
+	public void bfuncBlk(View v){
+		bfuncBlkin(1);
+	}
+	public void bfuncStl(View v){
+		bfuncStlin(1);
+	}
+	public void bfuncTo(View v){
+		bfuncToin(1);
+	}
+	public void bfuncFoul(View v){
+		bfuncFoulin(1);
+	}
+	public void bfuncAst(View v){
+		bfuncAstin(1);
+	}
+	public void bfuncTwopInin(int flag){
 		TextView two = (TextView)findViewById(R.id.Twop);
 		final TextView pscore = (TextView)findViewById(R.id.playerscore);
 		int selfpt = team.getInt(selfptIndex);
@@ -220,7 +256,7 @@ public class GameRecord extends Activity{
 			twoap++;
 			pts = pts + 2;
 			selfpt = selfpt + 2;
-			teampts=selfpt;
+			teampts+=2;
 		}
 		else{
 			if(pts>0&&twomd>0&&twoap>0){
@@ -228,7 +264,7 @@ public class GameRecord extends Activity{
 				twoap--;
 				pts=pts-2;
 				selfpt=selfpt-2;
-				teampts=selfpt;
+				teampts-=2;
 			}
 		}
 		ContentValues teamV = new ContentValues();
@@ -244,7 +280,7 @@ public class GameRecord extends Activity{
 		prestep =1;
 		//goBack();
 	}
-	public void bfuncTwopOut(View v,int flag){
+	public void bfuncTwopOutin(int flag){
 		TextView two = (TextView)findViewById(R.id.Twop);
 		final TextView pscore = (TextView)findViewById(R.id.playerscore);
 		if(flag==1){
@@ -263,7 +299,7 @@ public class GameRecord extends Activity{
 		//goBack();
 		prestep=2;
 	}
-	public void bfuncThreepIn(View v,int flag){
+	public void bfuncThreepInin(int flag){
 		TextView three = (TextView)findViewById(R.id.Threep);
 		final TextView pscore = (TextView)findViewById(R.id.playerscore);
 		int selfpt = team.getInt(selfptIndex);
@@ -272,7 +308,7 @@ public class GameRecord extends Activity{
 			threemd++;
 			threeap++;
 			selfpt = selfpt + 3;
-			teampts=selfpt;
+			teampts+=3;
 		}
 		else{
 			if(pts>0&&threemd>0&&threeap>0){
@@ -280,7 +316,7 @@ public class GameRecord extends Activity{
 			threemd--;
 			threeap--;
 			selfpt = selfpt - 3;
-			teampts=selfpt;
+			teampts-=3;
 			}
 		}
 		Show(threeap,threemd,three,"三分球");
@@ -296,7 +332,7 @@ public class GameRecord extends Activity{
 		//goBack();
 		prestep=3;
 	}
-	public void bfuncThreepOut(View v,int flag){
+	public void bfuncThreepOutin(int flag){
 		TextView three = (TextView)findViewById(R.id.Threep);
 		final TextView pscore = (TextView)findViewById(R.id.playerscore);
 		if(flag==1)
@@ -314,7 +350,7 @@ public class GameRecord extends Activity{
 		//goBack();
 		prestep=4;
 	}
-	public void bfuncFreethrowIn(View v,int flag){
+	public void bfuncFreethrowInin(int flag){
 		TextView free = (TextView)findViewById(R.id.Freethrow);
 		final TextView pscore = (TextView)findViewById(R.id.playerscore);
 		int selfpt = team.getInt(selfptIndex);
@@ -323,7 +359,7 @@ public class GameRecord extends Activity{
 			freemd++;
 			freeap++;
 			selfpt++;
-			teampts=selfpt;
+			teampts++;
 		}
 		else{
 			if(pts>0&&freemd>0&&freeap>0){
@@ -331,7 +367,7 @@ public class GameRecord extends Activity{
 			freemd--;
 			freeap--;
 			selfpt--;
-			teampts=selfpt;
+			teampts--;
 			}
 		}
 		Show(freeap,freemd,free,"罰球");
@@ -347,7 +383,7 @@ public class GameRecord extends Activity{
 		//goBack();
 		prestep=5;
 	}
-	public void bfuncFreethrowOut(View v,int flag){
+	public void bfuncFreethrowOutin(int flag){
 		TextView free = (TextView)findViewById(R.id.Freethrow);
 		final TextView pscore = (TextView)findViewById(R.id.playerscore);
 		//int ap = player.getInt(freeapIndex);
@@ -368,7 +404,7 @@ public class GameRecord extends Activity{
 		//goBack();
 		prestep=6;
 	}
-	public void bfuncReb(View v,int flag){
+	public void bfuncRebin(int flag){
 		Button rebs = (Button)findViewById(R.id.btnReb);
 		//int reb = player.getInt(rebIndex);
 		if(flag==1)
@@ -385,7 +421,7 @@ public class GameRecord extends Activity{
 		//goBack();
 		prestep=7;
 	}
-	public void bfuncAst(View v,int flag){
+	public void bfuncAstin(int flag){
 		Button ast = (Button)findViewById(R.id.btnAst);
 		//int ast = player.getInt(astIndex);
 		if(flag==1)
@@ -401,7 +437,7 @@ public class GameRecord extends Activity{
 		//goBack();
 		prestep=8;
 	}
-	public void bfuncStl(View v,int flag){
+	public void bfuncStlin(int flag){
 		Button stl = (Button)findViewById(R.id.btnStl);
 		//int stl = player.getInt(stlIndex);
 		if(flag==1)
@@ -417,7 +453,7 @@ public class GameRecord extends Activity{
 		//goBack();
 		prestep=9;
 	}
-	public void bfuncBlk(View v,int flag){
+	public void bfuncBlkin(int flag){
 		Button blk = (Button)findViewById(R.id.btnBlk);
 		//int blk = player.getInt(blkIndex);
 		if(flag==1)
@@ -433,7 +469,7 @@ public class GameRecord extends Activity{
 		//goBack();
 		prestep=10;
 	}
-	public void bfuncTo(View v,int flag){
+	public void bfuncToin(int flag){
 		Button to = (Button)findViewById(R.id.btnTo);
 		//int to = player.getInt(toIndex);
 		if(flag==1)
@@ -449,7 +485,7 @@ public class GameRecord extends Activity{
 		//goBack();
 		prestep=11;
 	}
-	public void bfuncFoul(View v,int flag){
+	public void bfuncFoulin(int flag){
 		Button fl = (Button)findViewById(R.id.btnFoul);
 		int fls = player.getInt(flIndex);
 		if(flag==1){
@@ -479,48 +515,48 @@ public class GameRecord extends Activity{
 	public void bfuncDelete(View v){
 		switch(prestep){
 		case 1:
-			bfuncTwopIn(bu,flag);
-			
+			bfuncTwopInin(0);
 			break;
 		case 2:
-			bfuncTwopOut(bu,flag);
+			bfuncTwopOutin(0);
 			
 			break;
 		case 3:
-			bfuncThreepIn(bu,flag);
+			bfuncThreepInin(0);
 			
 			break;
 		case 4:
-			bfuncThreepOut(bu,flag);
+			bfuncThreepOutin(0);
 			
 			break;
 		case 5:
-			bfuncFreethrowIn(bu,flag);
+			bfuncFreethrowInin(0);
 			
 			break;
 		case 6:
-			bfuncFreethrowOut(bu,flag);
+			bfuncFreethrowOutin(0);
 			
 			break;
 		case 7:
-			bfuncReb(bu,flag);
+			bfuncRebin(0);
 			break;
 		case 8:
-			bfuncAst(bu,flag);
+			bfuncAstin(0);
 			break;
 		case 9:
-			bfuncStl(bu,flag);
+			bfuncStlin(0);
 			break;
 		case 10:
-			bfuncBlk(bu,flag);
+			bfuncBlkin(0);
 			break;
 		case 11:
-			bfuncTo(bu,flag);
+			bfuncToin(0);
 			break;
 		case 12:
-			bfuncFoul(bu,flag);
+			bfuncFoulin(0);
 			break;
 		}
+		
 	}
 	public void goBack(){
 		Bundle tableback = new Bundle();
@@ -588,7 +624,7 @@ public class GameRecord extends Activity{
 			return 0;
 		
 	}
-	public boolean func(int ea,MotionEvent event,View v,int screenWidth,int screenHeight,ImageButton btn,Button bu,int flag){
+	 /*public boolean func(int ea,MotionEvent event,View v,int screenWidth,int screenHeight,ImageButton btn,Button bu,int flag){
     	
 	   	 switch(ea){  
 	        case MotionEvent.ACTION_DOWN:             
@@ -667,8 +703,8 @@ public class GameRecord extends Activity{
 	         break;            
 	        }
 	   	 return false;
-	   }
-	public void set(int judge,int flag,Button bu){
+	   }*/
+	/*public void set(int judge,int flag,Button bu){
 		switch(judge){
 		case 1:
 			bfuncReb(bu,flag);
@@ -707,7 +743,7 @@ public class GameRecord extends Activity{
 			bfuncFreethrowOut(bu,flag);
 			break;
 		}
-	}
+	}*/
 	public void showscore(int pt,TextView view){
 		view.setText(Integer.toString(pt));
 	}

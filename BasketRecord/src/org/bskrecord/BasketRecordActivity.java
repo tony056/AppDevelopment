@@ -69,7 +69,7 @@ public class BasketRecordActivity extends Activity {
     }*/
     public void getNew(View v){
     	Intent haha = new Intent();
-    	haha.setClass(BasketRecordActivity.this, Information.class);
+    	haha.setClass(BasketRecordActivity.this, Mainmenu.class);
     	startActivity(haha);
     	/*setContentView(R.layout.second);
     	
@@ -77,13 +77,13 @@ public class BasketRecordActivity extends Activity {
     }
     public void goNext(){
     	int i = 0;
-    	gotoNext = (Button)findViewById(R.id.button1);
-    	for(i=0;i<5;i++){
+    	//gotoNext = (Button)findViewById(R.id.button1);
+    	/*for(i=0;i<5;i++){
     		int getName = getResources().getIdentifier("name"+(i+1), "id", getPackageName());
         	int getNumber = getResources().getIdentifier("number"+(i+1), "id", getPackageName());
     		name[i] = (EditText)findViewById(getName);
     		number[i] = (EditText)findViewById(getNumber);
-    	}
+    	}*/
     }
     public void toOld(View v){
     	Intent oldData = new Intent();
@@ -97,7 +97,7 @@ public class BasketRecordActivity extends Activity {
     	assert(QQ != null);
     	
     }
-    public void startdata(View v){
+    /*public void startdata(View v){
     	EditText tableData = (EditText)findViewById(R.id.tableData);
     	EditText tablemonth = (EditText)findViewById(R.id.tableMonth);
     	EditText tableday = (EditText)findViewById(R.id.tableDay);
@@ -115,7 +115,7 @@ public class BasketRecordActivity extends Activity {
     	setContentView(R.layout.third);
     	// viewData(str.toString());
     	//QQ.outputData();
-    }
+    }*/
     /*public void insertdata(String tableName , int month,int day,String opp){
     	QQ.createTable(tableName);
     	

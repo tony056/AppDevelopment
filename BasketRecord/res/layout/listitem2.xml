@@ -5,83 +5,103 @@
     android:layout_height="fill_parent" >
 
     <TextView
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:id="@+id/txt7"
-        android:layout_span="2"
-        style="@style/styleForName" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
 
     <TextView
         android:layout_weight="1"
         android:id="@+id/txt8"
-        style="@style/styleForData" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
 
     <TextView
         android:layout_weight="1"
         android:id="@+id/txt9"
-        style="@style/styleForData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
          />
      <TextView
         android:layout_weight="1"
         android:id="@+id/txt10"
-        style="@style/styleForData"
+ 		android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
          />
 
     <TextView
         android:layout_weight="1"
         android:id="@+id/txt11"
-        style="@style/styleForData"
-         />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
      <TextView
         android:layout_weight="1"
         android:id="@+id/txt12"
-        style="@style/styleForData"
-         />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
 
     <TextView
         android:layout_weight="1"
         android:id="@+id/txt13"
-        style="@style/styleForData" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
 
     <TextView
         android:layout_weight="1"
         android:id="@+id/txt14"
-        style="@style/styleForData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
          />
      <TextView
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:id="@+id/txt15"
-        style="@style/styleForData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
          />
 
     <TextView
         android:layout_weight="1"
         android:id="@+id/txt16"
-        style="@style/styleForData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
          />
      <TextView
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:id="@+id/txt17"
-       style="@style/styleForData" />
+       android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:text="兩分中/兩分出手"
+       android:gravity="center"/>
 
     <TextView
         android:layout_weight="1"
         android:id="@+id/txt18"
-        style="@style/styleForData" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
 
     <TextView
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:id="@+id/txt19"
-        style="@style/styleForData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
          />
      <TextView
         android:layout_weight="1"
         android:id="@+id/txt20"
-        style="@style/styleForData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
          />
 </TableRow>

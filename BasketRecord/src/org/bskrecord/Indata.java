@@ -36,6 +36,7 @@ public class Indata extends ListActivity{
 		Cursor cur = dbname.query(bundle.getString("Tablename"), null, null, null, null, null, null);
 		StringBuilder allData = new StringBuilder();
 		allData.append(String.format("%9s "+"/"+ "%s %2s %2s %2s %2s %2s %2s %2s %s/%s %2s %s/%s %2s %s/%s %2s\n","姓名","背號","得分","籃板","助攻","抄截","火鍋","失誤","犯規","二中","二投","二命","三中","三投","三命","罰中","罰投","罰命") );
+		
 		ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
 		if(cur.moveToFirst()){
 			int indexName = cur.getColumnIndexOrThrow(SQLite.NAME);
@@ -74,7 +75,22 @@ public class Indata extends ListActivity{
 	            	allData.append(line[g]);
 	            }
 	            allData.append("\n");
-    		
+	            HashMap<String, String> title = new HashMap<String, String>();
+	    		title.put( "txt7" , "Name/Number");     //文字
+	            title.put( "txt8" , "得分");
+	            title.put("txt9", "籃板");
+	            title.put("txt10", "助攻");
+	            title.put("txt11", "抄截");
+	            title.put("txt12", "火鍋");
+	            title.put("txt13", "失誤");
+	            title.put("txt14", "犯規");
+	            title.put("txt15", "兩分中/兩分出手");
+	            title.put("txt16", "命中率 (%)");
+	            title.put("txt17", "三分中/三分出手");
+	            title.put("txt18", "命中率 (%)");
+	            title.put("txt19", "罰球中/罰球出手");
+	            title.put("txt20", "命中率 (%)");
+	            list.add(title);
 			while (!cur.isAfterLast()) {
 				String name = cur.getString(indexName);
 				String number = cur.getString(indexNumber);
@@ -92,15 +108,16 @@ public class Indata extends ListActivity{
 				int threeMd = cur.getInt(indexThreeMd);
 				int freeAp = cur.getInt(indexFreeAp);
 				int freeMd = cur.getInt(indexFreeMd);
+				
 				HashMap<String, String> map = new  HashMap<String, String>();
 	            map.put( "txt7" , name+"/"+number);     //文字
-	            map.put( "txt8" , Integer.toString(pts));
-	            map.put("txt9", Integer.toString(rbs));
-	            map.put("txt10", Integer.toString(asts));
-	            map.put("txt11", Integer.toString(stls));
-	            map.put("txt12", Integer.toString(blks));
-	            map.put("txt13", Integer.toString(tos) );
-	            map.put("txt14", Integer.toString(fls));
+	            map.put( "txt8" , String.format("%2d", pts));
+	            map.put("txt9", String.format("%2d", rbs));
+	            map.put("txt10", String.format("%2d",asts));
+	            map.put("txt11", String.format("%2d",stls));
+	            map.put("txt12", String.format("%2d", blks));
+	            map.put("txt13", String.format("%2d", tos));
+	            map.put("txt14", String.format("%2d", fls));
 	            map.put("txt15", Integer.toString(twoMd)+"/"+Integer.toString(twoAp));
 	            map.put("txt16", calculus(twoMd,twoAp)+" %");
 	            map.put("txt17", Integer.toString(threeMd)+"/"+Integer.toString(threeAp));
@@ -132,7 +149,7 @@ public class Indata extends ListActivity{
 			}
 			cur.close();
 			dbname.close();
-			createFile(bundle.getString("Tablename"),allData.toString());
+			//createFile(bundle.getString("Tablename"),allData.toString());
 		}
 		ItemAdapter = new SimpleAdapter(this,list,R.layout.listitem2,new String [] {"txt7","txt8","txt9","txt10","txt11",
 				"txt12","txt13","txt14","txt15","txt16","txt17","txt18","txt19","txt20"},
