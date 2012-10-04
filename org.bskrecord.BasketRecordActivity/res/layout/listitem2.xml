@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/TableRow1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:layout_weight="3"
+        android:id="@+id/txt7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_weight="1"
+        android:id="@+id/txt8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_weight="1"
+        android:id="@+id/txt9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+         />
+     <TextView
+        android:layout_weight="1"
+        android:id="@+id/txt10"
+ 		android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+         />
+
+    <TextView
+        android:layout_weight="1"
+        android:id="@+id/txt11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+     <TextView
+        android:layout_weight="1"
+        android:id="@+id/txt12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_weight="1"
+        android:id="@+id/txt13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_weight="1"
+        android:id="@+id/txt14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+         />
+     <TextView
+        android:layout_weight="2"
+        android:id="@+id/txt15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+         />
+
+    <TextView
+        android:layout_weight="1"
+        android:id="@+id/txt16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+         />
+     <TextView
+        android:layout_weight="2"
+        android:id="@+id/txt17"
+       android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:text="兩分中/兩分出手"
+       android:gravity="center"/>
+
+    <TextView
+        android:layout_weight="1"
+        android:id="@+id/txt18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_weight="2"
+        android:id="@+id/txt19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+         />
+     <TextView
+        android:layout_weight="1"
+        android:id="@+id/txt20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+         />
+</TableRow>
