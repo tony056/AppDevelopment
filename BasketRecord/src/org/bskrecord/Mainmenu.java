@@ -6,16 +6,20 @@ import android.os.Bundle;
 import android.view.View;
 
 public class Mainmenu extends Activity{
+	int style=0;
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.secondpage);
+		Bundle getstyle = this.getIntent().getExtras();
+		style=getstyle.getInt("style");
 	}
 	public void addname(View v){
 		
 		Intent add = new Intent();
 		Bundle set = new Bundle();
 		set.putInt("judge", 0);
+		set.putInt("style", style);
 		add.putExtras(set);
 		add.setClass(Mainmenu.this, Information.class);
 		startActivity(add);
@@ -25,6 +29,7 @@ public class Mainmenu extends Activity{
 		Intent add = new Intent();
 		Bundle set = new Bundle();
 		set.putInt("judge", 1);
+		set.putInt("style", style);
 		add.putExtras(set);
 		add.setClass(Mainmenu.this, Information.class);
 		startActivity(add);

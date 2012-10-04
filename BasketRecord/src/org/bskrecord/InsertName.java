@@ -11,13 +11,15 @@ import android.widget.Toast;
 public class InsertName extends Activity {
 	String[] namess = {"","","","","","","","","","","","","","","",""};
 	String[] numberss = {"","","","","","","","","","","","","","","",""}; 
-	public int i = 0;
+	public int i = 0,style=0;
 	private SQLite QQ = null;
 	StringBuilder tableName = new StringBuilder("");
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insertnew);
+        Bundle getstyle = this.getIntent().getExtras();
+        style=getstyle.getInt("style");
         
 	}
 	public void insertCall(View v){
@@ -32,6 +34,8 @@ public class InsertName extends Activity {
 			numberss[i] = number.getText().toString();
 			getArray.setView();
 			i++;
+			name.setText("");
+			number.setText("");
 			//Toast.makeText(InsertName.this, Integer.toString(i), Toast.LENGTH_LONG).show();
 			
 		}
@@ -52,6 +56,7 @@ public class InsertName extends Activity {
 		table.putInt("ofls", 0);
 		table.putInt("ourpts", 0);
 		table.putInt("opppts", 0);
+		table.putInt("style", style);
 		toRecord.putExtras(table);
 		toRecord.setClass(InsertName.this, Recording.class);
 		startActivity(toRecord);
@@ -60,6 +65,9 @@ public class InsertName extends Activity {
 	@Override
 	public void onBackPressed(){
 		Intent back = new Intent();
+		Bundle putback = new Bundle();
+		putback.putInt("judge", 0);
+		putback.putInt("style", style);
 		back.setClass(InsertName.this, Information.class);
 		startActivity(back);
 		InsertName.this.finish();

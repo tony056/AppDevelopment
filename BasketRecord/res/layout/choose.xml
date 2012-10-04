@@ -85,14 +85,14 @@
 	    android:layout_height="wrap_content">    
 	    
 		<RadioButton
-            android:id="@+id/chooseblack"
+            android:id="@+id/choosewhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BLACK" />
+            android:text="WHITE" />
 	</TableRow>
 	<TableRow>
 	    <ImageView android:id="@+id/blalook"
-            android:src="@drawable/black"
+            android:src="@drawable/white"
             android:background="#00000000"
             android:layout_margin="2dp"/>
 	</TableRow>
@@ -118,6 +118,11 @@
 	</TableRow>
 	</TableLayout>
 	</RadioGroup>
-    
+    <Button android:id="@+id/backtomenu"
+        android:layout_gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="backmenu"
+        android:text="回選單"/>
 
 </LinearLayout>

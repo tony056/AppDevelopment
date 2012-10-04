@@ -38,7 +38,7 @@ public class Recording extends Activity {
 	int point = 0;
 	int selffl = 0,oppfl = 0;
 	int opppts = 0,ourpts=0;
-	int step=0;
+	int step=0,style=0;
 	String str = "";
 	String table = "";
 	@Override
@@ -55,6 +55,7 @@ public class Recording extends Activity {
 		oppfl = getname.getInt("ofls");
 		ourpts = getname.getInt("ourpts");
 		opppts = getname.getInt("opppts");
+		style=getname.getInt("style");
 		String[] columns = {"number"};
 		DisplayMetrics dm = getResources().getDisplayMetrics();
         final int screenWidth = dm.widthPixels;  
@@ -67,6 +68,7 @@ public class Recording extends Activity {
 		for(int i=0;i<5;i++){
 			int getmName = getResources().getIdentifier("mainplayer"+(i+1), "id", getPackageName());
 			mBtn[i] = (Button)findViewById(getmName);
+			setBack(mBtn[i]);
 			mNum[i] = fullNum[i];
 			//mNum[i] = c.getString(numIndex);
 			mBtn[i].setText(mNum[i]);
@@ -335,6 +337,27 @@ public class Recording extends Activity {
 		v.setClickable(true);
 		toBtnpage(mNum[4]);
 	}*/
+	public void setBack(Button bu){
+		switch(style)
+		{
+		case 1:
+			bu.setBackgroundResource(R.drawable.blueplayer);
+			break;
+		case 2:
+			bu.setBackgroundResource(R.drawable.blueplayer);
+			break;
+		case 3:
+			bu.setBackgroundResource(R.drawable.blueplayer);
+			break;
+		case 4:
+			bu.setBackgroundResource(R.drawable.blueplayer);
+			break;
+		case 5:
+			bu.setBackgroundResource(R.drawable.blueplayer);
+			break;
+			
+		}
+	}
 	public void undo(View v){
 		if(step==1){
 			opppts--;
